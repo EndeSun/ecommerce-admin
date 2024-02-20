@@ -369,7 +369,7 @@ class DatabaseSeeder extends Seeder
 
     //Pedidos
     private $orders = [
-        ['user_id' => 1, 'date_order' => '2022-01-17', 'date_out' => '2022-01-19', 'date_delivered' => '2022-01-22', 'payment_method' => 'cash', 'state' => 'delivered', 'pay_state' => 'pagado', 'address' => 'Calle Zorrilla 1, 4C, 03690, Comunidad Valenciana, Alicante, San Vicente del Raspeig', 'clients_note' => 'enfrente del día, es una puerta roja', 'additional_cost' => 2.00, 'price' => 120.45, 'transaction_id' => '#323213'],
+        ['user_id' => 1, 'date_order' => '2022-01-17', 'date_out' => '2022-01-19', 'date_delivered' => '2022-01-22', 'payment_method' => 'cash', 'state' => 'delivered', 'pay_state' => 'pagado', 'address' => 'Calle Zorrilla 1, 4C, 03690, Comunidad Valenciana, Alicante, San Vicente del Raspeig', 'clients_note' => 'enfrente del día, es una puerta roja', 'additional_cost' => 2.00, 'transaction_id' => '#323213'],
         [
             'user_id' => 3,
             'date_order' => '2022-01-20',
@@ -381,7 +381,6 @@ class DatabaseSeeder extends Seeder
             'address' => 'Calle del Mar, 15, 28033 Madrid',
             'clients_note' => 'Dejar en portería',
             'additional_cost' => 0.00,
-            'price' => 75.90,
             'transaction_id' => '#323214'
         ],
         [
@@ -395,7 +394,6 @@ class DatabaseSeeder extends Seeder
             'address' => 'Av. de América, 4, 28028 Madrid',
             'clients_note' => 'Entregar en mano al portero',
             'additional_cost' => 3.50,
-            'price' => 89.99,
             'transaction_id' => '#323215'
         ],
         [
@@ -409,7 +407,6 @@ class DatabaseSeeder extends Seeder
             'address' => 'Calle Mayor, 10, 46001 Valencia',
             'clients_note' => 'Dejar en buzón',
             'additional_cost' => 1.00,
-            'price' => 55.75,
             'transaction_id' => '#323216'
         ],
         [
@@ -423,7 +420,6 @@ class DatabaseSeeder extends Seeder
             'address' => 'Calle Mayor, 5, 46002 Valencia',
             'clients_note' => 'Dejar en buzón',
             'additional_cost' => 1.50,
-            'price' => 65.75,
             'transaction_id' => '#323218'
         ],
         [
@@ -437,7 +433,6 @@ class DatabaseSeeder extends Seeder
             'address' => 'Calle Atocha, 15, 28012 Madrid',
             'clients_note' => 'Entregar en portería',
             'additional_cost' => 2.00,
-            'price' => 120.45,
             'transaction_id' => '#323219'
         ],
         [
@@ -451,7 +446,6 @@ class DatabaseSeeder extends Seeder
             'address' => 'Av. Diagonal, 20, 08019 Barcelona',
             'clients_note' => 'Entregar en mano al portero',
             'additional_cost' => 0.00,
-            'price' => 89.99,
             'transaction_id' => '#323220'
         ],    [
             'user_id' => 3,
@@ -464,7 +458,6 @@ class DatabaseSeeder extends Seeder
             'address' => 'Carrer de Balmes, 50, 08007 Barcelona',
             'clients_note' => 'Dejar en buzón',
             'additional_cost' => 1.50,
-            'price' => 55.75,
             'transaction_id' => '#323221'
         ],
         [
@@ -478,7 +471,6 @@ class DatabaseSeeder extends Seeder
             'address' => 'Calle Gran Vía, 30, 28013 Madrid',
             'clients_note' => 'Entregar en mano al destinatario',
             'additional_cost' => 0.00,
-            'price' => 99.99,
             'transaction_id' => '#323222'
         ],
         [
@@ -492,7 +484,6 @@ class DatabaseSeeder extends Seeder
             'address' => 'Calle de Serrano, 100, 28006 Madrid',
             'clients_note' => 'Entregar en portería',
             'additional_cost' => 2.00,
-            'price' => 79.95,
             'transaction_id' => '#323223'
         ],
         [
@@ -506,7 +497,6 @@ class DatabaseSeeder extends Seeder
             'address' => 'Plaça de Catalunya, 08002 Barcelona',
             'clients_note' => 'Dejar en buzón',
             'additional_cost' => 0.00,
-            'price' => 45.50,
             'transaction_id' => '#323224'
         ],
 
@@ -527,24 +517,23 @@ class DatabaseSeeder extends Seeder
             $o->address = $order['address'];
             $o->clients_note = $order['clients_note'];
             $o->additional_cost = $order['additional_cost'];
-            $o->price = $order['price'];
             $o->transaction_id = $order['transaction_id'];
             $o->save();
         }
     }
     //Productos de los pedidos
     private $order_products = [
-        ['order_id' => 1, 'product_id' => 4, 'quantity' => 12],
-        ['order_id' => 2, 'product_id' => 8, 'quantity' => 5],
-        ['order_id' => 3, 'product_id' => 15, 'quantity' => 9],
-        ['order_id' => 4, 'product_id' => 21, 'quantity' => 7],
-        ['order_id' => 5, 'product_id' => 28, 'quantity' => 3],
-        ['order_id' => 6, 'product_id' => 32, 'quantity' => 10],
-        ['order_id' => 7, 'product_id' => 38, 'quantity' => 6],
-        ['order_id' => 8, 'product_id' => 42, 'quantity' => 14],
-        ['order_id' => 9, 'product_id' => 48, 'quantity' => 8],
-        ['order_id' => 10, 'product_id' => 55, 'quantity' => 11],
-        ['order_id' => 11, 'product_id' => 61, 'quantity' => 4],
+        ['order_id' => 1, 'product_id' => 4, 'quantity' => 12, 'price' => 12.5],
+        ['order_id' => 2, 'product_id' => 8, 'quantity' => 5, 'price' => 11.5],
+        ['order_id' => 3, 'product_id' => 15, 'quantity' => 9, 'price' => 10.5],
+        ['order_id' => 4, 'product_id' => 21, 'quantity' => 7, 'price' => 20.5],
+        ['order_id' => 5, 'product_id' => 28, 'quantity' => 3, 'price' => 8.4],
+        ['order_id' => 6, 'product_id' => 32, 'quantity' => 10, 'price' => 1.3],
+        ['order_id' => 7, 'product_id' => 38, 'quantity' => 6, 'price' => 2.2],
+        ['order_id' => 8, 'product_id' => 42, 'quantity' => 14, 'price' => 4.8],
+        ['order_id' => 9, 'product_id' => 48, 'quantity' => 8, 'price' => 7.3],
+        ['order_id' => 10, 'product_id' => 55, 'quantity' => 11, 'price' => 16.8],
+        ['order_id' => 11, 'product_id' => 61, 'quantity' => 4, 'price' => 5.1],
     ];
 
     public function seedOrder_products()
@@ -555,6 +544,7 @@ class DatabaseSeeder extends Seeder
             $op->order_id = $order_product['order_id'];
             $op->product_id = $order_product['product_id'];
             $op->quantity = $order_product['quantity'];
+            $op->price = $order_product['price'];
             $op->save();
         }
     }

@@ -1,0 +1,169 @@
+/* $offcanvas-horizontal-width:        250px;
+$offcanvas-vertical-height:         30vh;
+$offcanvas-transition-duration:     .6s; */
+/* Clases de sass */
+
+/* ---------------------------- */
+/* Variables Sass */
+$initialPosition: 250px;
+$primaryColor: rgb(62 92 122);
+$minimunSpace: 0.5rem;
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+a,
+ol,
+ul,
+li {
+    list-style: none;
+    color: white;
+    text-decoration-line: none;
+}
+
+/* ---------------------------- */
+/* Sección de la cabecera */
+header {
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 15px 0px;
+    height: 60px;
+    margin-left: $initialPosition;
+    /* Transición del margen */
+    transition: margin-left 0.5s;
+
+    /* Estilo del icono del menú */
+    #menu-icon, #expand-icon {
+        background-color: transparent;
+        border-style: none;
+    }
+
+    
+}
+
+/* ---------------------------- */
+/* Sección del contenido principal */
+main {
+    margin-left: $initialPosition;
+    background-color: aliceblue;
+    /* Transición del margen */
+    transition: margin-left 0.5s;
+}
+
+/* ---------------------------- */
+/* Tamaño de los iconos */
+i {
+    font-size: 1.3rem;
+}
+
+/* ---------------------------- */
+/* Sección de perfiles */
+.section-perfiles {
+    display: flex;
+    gap: 1em;
+    margin: 0px 5px 0px 0px;
+    /* ---------------------------- */
+    /* Imagen de perfil */
+    .perfil {
+        border-radius: 9999px;
+        width: 2rem;
+        height: 2rem;
+    }
+}
+
+/* ---------------------------- */
+/* Sidebar behavior */
+nav {
+    height: 100%;
+    width: $initialPosition;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: $primaryColor;
+    overflow-x: hidden;
+    padding-top: 20px;
+
+    /* Transición del margen */
+    transition: 0.5s;
+
+    /* título de la sección nav */
+    .header-nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        vertical-align: middle;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        padding-bottom: $minimunSpace;
+
+
+        /* Título del nav */
+        h1 {
+            text-shadow: 1px 1px;
+            font-size: 1.25rem;
+            line-height: 1.75rem;
+            font-weight: 700;
+            color: white;
+        }
+        img {
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 9999px;
+        }
+    }
+
+    /* Barra de separación */
+    hr {
+        margin-right: $minimunSpace * 2;
+        color: white;
+    }
+
+    /* Colapsible components */
+    .navs-collapsible {
+        color: white;
+        margin-top: 1rem;
+
+        .icon-text-chevron-container {
+            padding-right: 1rem;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            margin-right: $minimunSpace * 2;
+            margin-bottom: $minimunSpace * 2;
+            &:hover {
+                cursor: pointer;
+            }
+
+        }
+
+        .sublist-container{
+            li{
+                margin-top: $minimunSpace;
+            }
+        }
+
+
+        /* Comportamiento del chevron y la sublista */
+        .chevron {
+            transition: transform 0.5s ease;
+        }
+        .chevron.rotate {
+            transform: rotate(90deg);
+        }
+        .sublist-container.hidden {
+            display: none;
+        }
+
+
+    }
+    /* ---------------------------- */
+    /* Estilo de la clase seleccionada */
+    .selected {
+        border-left: 3px solid #6adee2;
+        background-color: rgba(126, 123, 129, 0.199);
+        padding-left: $minimunSpace / 2;
+    }
+}

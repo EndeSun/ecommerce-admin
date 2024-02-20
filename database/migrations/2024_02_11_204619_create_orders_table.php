@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('address'); //calle, ciudad, estado/provincia, código postal, y país.
             $table->string('clients_note');
             $table->decimal('additional_cost');
-            $table->decimal('price');
             $table->string('transaction_id');
             $table->timestamps();
         });

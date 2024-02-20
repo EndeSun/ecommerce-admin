@@ -14,5 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return 'El proyecto funciona';
+    return view('layouts/master');
 });
