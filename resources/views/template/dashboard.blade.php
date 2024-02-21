@@ -9,7 +9,7 @@
     <ul>
         <!-- SECCIÓN DE DASHBOARD - PANTALLA PRINCIPAL -->
         <li class="navs-collapsible">
-            <a class="colapse-unique-option" href="#dashboard ">
+            <a class="colapse-unique-option" href="/dashboard ">
                 <i class="fa-brands fa-screenpal"></i>
                 <span class="txtLink">Dashboard</span>
             </a>
@@ -21,7 +21,7 @@
         <li class="navs-collapsible">
             <div class="icon-text-chevron-container">
                 <div class="icon-text">
-                    <a href="#clientes">
+                    <a href="/clientes">
                         <i class="fa-solid fa-user-tag"></i>
                         <span class="txtLink">Clientes</span>
                     </a>
@@ -42,9 +42,9 @@
             </div>
 
             <ul class="sublist-container hidden">
-                <li><a href="#">Categorías</a></li>
-                <li><a href="#">Productos</a></li>
-                <li><a href="#">Informes</a></li>
+                <li><a href="/categorias">Categorías</a></li>
+                <li><a href="/productos">Productos</a></li>
+                <li><a href="/productos/informes">Informes</a></li>
             </ul>
         </li>
         <hr>
@@ -61,8 +61,8 @@
             </div>
 
             <ul class="sublist-container hidden">
-                <li><a href="#">Pedidos</a></li>
-                <li><a href="#">Informes</a></li>
+                <li><a href="/pedidos">Pedidos</a></li>
+                <li><a href="/pedidos/informes">Informes</a></li>
             </ul>
         </li>
         <hr>
@@ -79,9 +79,9 @@
             </div>
 
             <ul class="sublist-container hidden">
-                <li><a href="#">Rol</a></li>
-                <li><a href="#">Usuarios</a></li>
-                <li><a href="#">Informes</a></li>
+                <li><a href="/rol">Rol</a></li>
+                <li><a href="/usuarios">Usuarios</a></li>
+                <li><a href="/usuarios/informes">Informes</a></li>
             </ul>
         </li>
         <hr>
@@ -113,13 +113,18 @@
     </button>
 
     <!-- Sección del icóno y el botón de expandir -->
-    <section class="section-perfiles">
-        <img class="perfil"
+    <section id="section-perfiles" class="section-perfiles dropdown">
+        <img class="perfil dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"
             src="https://img.freepik.com/fotos-premium/colegial-triste-imagen-3d-fondo-colorido-ai-generativo_58409-28910.jpg?size=338&ext=jpg&ga=GA1.1.1412446893.1705449600&semt=ais"
             alt="perfil">
         <button id="expand-icon">
             <i id="btn-expand" class="fa-solid fa-maximize"></i>
         </button>
+        <ul class="dropdown-menu dropdown-menu-dark">
+            <li><a class="dropdown-item" href="#">Cambiar de usuario</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+        </ul>
     </section>
 </header>
 

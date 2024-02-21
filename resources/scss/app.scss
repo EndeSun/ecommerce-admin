@@ -23,6 +23,7 @@ li {
 /* ---------------------------- */
 /* Sección de la cabecera */
 header {
+    background: #f6f2f2;
     border-bottom: 0.5px solid rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: space-between;
@@ -30,22 +31,32 @@ header {
     padding: 0px 15px 0px;
     height: 60px;
     margin-left: $initialPosition;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100vw; /* Full width */
     /* Transición del margen */
     transition: margin-left 0.5s;
+
+
 
     /* Estilo del icono del menú */
     #menu-icon, #expand-icon {
         background-color: transparent;
         border-style: none;
     }
-
-    
+    #section-perfiles{
+        margin-right: $initialPosition;
+        transition: margin-right 0.5s;
+    }
 }
 
 /* ---------------------------- */
 /* Sección del contenido principal */
 main {
+    margin-top: 50px;
+    padding: calc($minimunSpace*3);
     margin-left: $initialPosition;
+    height: 100%;
     background-color: aliceblue;
     /* Transición del margen */
     transition: margin-left 0.5s;

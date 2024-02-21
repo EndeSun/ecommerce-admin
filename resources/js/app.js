@@ -42,12 +42,16 @@ function open() {
     document.getElementById("mySidenav").style.width = "250px";
     document.getElementById("head-content").style.marginLeft = "250px";
     document.getElementById("main-content").style.marginLeft = "250px";
+    document.getElementById("section-perfiles").style.marginRight = "250px";
+
     state = "open";
 }
 function close() {
     document.getElementById("mySidenav").style.width = "0px";
     document.getElementById("head-content").style.marginLeft = "0px";
     document.getElementById("main-content").style.marginLeft = "0px";
+    document.getElementById("section-perfiles").style.marginRight = "0px";
+
     state = "close";
 }
 // ----------------------------------------------------------------
