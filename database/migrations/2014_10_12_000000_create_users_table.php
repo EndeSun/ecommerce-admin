@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('state');
             $table->string('CP');
             $table->date('registration_date');
+            $table->string("image")->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

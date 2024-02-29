@@ -175,6 +175,6 @@ nav {
     .selected {
         border-left: 3px solid #6adee2;
         background-color: rgba(126, 123, 129, 0.199);
-        padding-left: $minimunSpace / 2;
+        padding-left: calc($minimunSpace / 2);
     }
 }

@@ -4,5 +4,8 @@
 
 <p>Pantalla rol de usuarios</p>
 
+@foreach ($arrayUsers as $user )
+    <h4>{{$user->rol}}</h4>    
+@endforeach
 
 @endsection

@@ -1,6 +1,13 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\PedidosController;
+use App\Http\Controllers\UsuariosController;
+use App\Http\Controllers\ProductosController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,57 +20,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('layouts/master');
-});
+Route::get('/', [HomeController::class, 'getHome']);//✅
 
 /* Dashboard principal */
-Route::get("/dashboard", function(){
-    return view('maindashboard');
-});
+Route::get("/dashboard", [DashboardController::class, 'getDashboard']);
 
 /* Módulo de clientes */
-Route::get("/clientes", function(){
-    return view('clientes/clientes');
-});
+Route::get("/clientes", [ClientController::class, 'getClients']); //✅
+Route::put('/clientes/edit/{id}', [ClientController::class, 'putEditClient']);
+
 
 /* Módulo de productos */
-Route::get("/categorias", function(){
-    return view('productos/categorias');
-});
-
-Route::get("/productos", function(){
-    return view('productos/productos');
-});
-
-Route::get("/productos/informes", function(){
-    return view('productos/productos_informes');
-});
+Route::get("/categorias", [ProductosController::class, 'getCategorias']); //✅
+Route::get("/productos", [ProductosController::class, 'getProductos']); //✅
+Route::get("/productos/informes", [ProductosController::class, 'getProductosInformes']);
 
 /* Módulo de pedidos */
-Route::get("/pedidos", function(){
-    return view('pedidos/pedidos');
-});
-
-Route::get("/pedidos/informes", function(){
-    return view('pedidos/pedidos_informes');
-});
-
+Route::get("/pedidos", [PedidosController::class, 'getPedidos']); //✅🟥
+Route::get("/pedidos/informes", [PedidosController::class, 'getPedidosInformes']);
 
 /* Módulo de usuarios */
-Route::get("/usuarios", function(){
-    return view('usuarios/usuarios');
-});
-
-Route::get("/rol", function(){
-    return view('usuarios/rol');
-});
-
-Route::get("/usuarios/informes", function(){
-    return view('usuarios/usuarios_informes');
-});
-
-
-
-
+Route::get("/usuarios", [UsuariosController::class, 'getUsuarios']);//✅🟥
+Route::get("/rol", [UsuariosController::class, 'getUsuariosRol']);//✅🟥
+Route::get("/usuarios/informes", [UsuariosController::class, 'getUsuariosInformes']);
 
