@@ -52,6 +52,13 @@ class ClientController extends Controller
 	}
 
     public function postClient(Request $request){
-        dd('funciona');
+        $user = new User;
+        $user->name = $request->input('name');
+		$user->surname = $request->input('surname');
+        $user->email = $request->input('email');
+        $user->password = $request->input('password');
+        $user->rol = 'client';
+        $user->save();
+		return redirect('/clientes');
     }
 }

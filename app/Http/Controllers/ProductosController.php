@@ -6,10 +6,11 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
 
+
 class ProductosController extends Controller
 {
     public function getCategorias(){
-        $arrayCategorias = Category::all();
+        $arrayCategorias = Category::paginate(10);
         return view('productos/categorias', ['arrayCategorias' => $arrayCategorias]);
     }
 
