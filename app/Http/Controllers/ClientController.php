@@ -14,18 +14,7 @@ class ClientController extends Controller
 
     public function getClients()
     {
-
-        //$arrayUsers = User::where('rol', '=', 'clients')->withCount('orders')->get();
-        /*  $arrayUsers = User::query()
-             ->where('rol', '=', 'clients')
-             ->with([
-                 'orders' => [
-                     'orders_product:id,price'
-                 ]
-             ])
-             ->get(); */
-
-        $arrayUsers = User::where('rol', '=', 'clients')
+        $arrayUsers = User::where('rol', '=', 'client')
         ->with([
             'orders' => function ($query) {
                 $query->withSum('orders_product', 'price');
@@ -38,22 +27,22 @@ class ClientController extends Controller
 	{
 		$user = User::findOrFail($id);
 
-        $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048', // Ajusta los mime types y el tamaño máximo según tus necesidades
-        ]);
 
-        if($request->file('image')->isValid()){
-            $file = $request->file('image');
-            $destinationPath = 'images/avatarsUser/';
-            $filename = time().'-'.$file->getClientOriginalName();
-            $request->file('image')->move($destinationPath, $filename);
-            $user->image = $destinationPath . $filename;
+        if($request->file('image') != null){
+            $request->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg|max:2048', // Ajusta los mime types y el tamaño máximo según tus necesidades
+            ]);
+            if($request->file('image')->isValid()){
+                $file = $request->file('image');
+                $destinationPath = 'images/avatarsUser/';
+                $filename = time().'-'.$file->getClientOriginalName();
+                $request->file('image')->move($destinationPath, $filename);
+                $user->image = $destinationPath . $filename;
+            }
         }
-
 		$user->name = $request->input('name');
 		$user->surname = $request->input('surname');
-        //Falta meter el correo
-        $user->mail = $request->input('mail');
+        $user->email = $request->input('emailPost');
 		$user->street = $request->input('street');
 		$user->city = $request->input('city');
 		$user->state = $request->input('state');
@@ -61,4 +50,8 @@ class ClientController extends Controller
 		$user->save();
 		return redirect('/clientes');
 	}
+
+    public function postClient(Request $request){
+        dd('funciona');
+    }
 }

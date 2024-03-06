@@ -8,32 +8,63 @@
 @section('content-master')
 <h1>Clientes</h1>
 
+<!-- Section to add new client -->
 <button data-bs-toggle="modal" data-bs-target="#add_client" class="btn btn-warning btn_add_client">
     Añadir nuevo cliente
 </button>
 
+<div class="mb-2 filters">
+  <input type="text" placeholder="Buscar por nombre">
+  <input type="email" placeholder="Buscar por correo">
+</div>
+
 <div class="modal fade" id="add_client" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl modal-dialog-scrollable">
     <div class="modal-content">
+    <form action="{{ url('clientes/post')}}" method="POST" enctype="multipart/form-data">
+        @csrf
       <div class="modal-header">
         <h2 class="modal-title fs-5" id="exampleModalLabel">Añadir nuevo cliente</h2>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
-      <form action="{{ url('clientes/post')}}" method="POST" enctype="multipart/form-data">
-        @csrf
-        <div class="modal-body">
 
+        <div class="modal-body">
+                <div class="row">
+                    <div class="form-group col-6">
+                        <label for="name">Nombre</label>
+                        <input type="text" name="name" id="name" class="form-control">
+                    </div>
+
+                    <div class="form-group col-6">
+                        <label for="surname">Apellidos</label>
+                        <input type="text" name="surname" id="surname" class="form-control">
+                    </div>
+                </div>
+
+        
+                <div class="form-group">
+                    <label for="email">Correo</label>
+                    <input type="email" name="email" id="email" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" name="password" id="password" class="form-control">
+                </div>
         </div>
-      </form>
+    
+      
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success">Save changes</button>
+        <button type="submit" class="btn btn-success">Agregar cliente</button>
       </div>
+      </div>
+      </form>
     </div>
-  </div>
 </div>
+
 
 <table class="table">
     <thead>
@@ -55,7 +86,7 @@
                     src="{{asset($user->image)}}"
                     alt="Imagen perfil" width="35rem" class="img-fluid"></th>
             <td>{{$user->name}}</td>
-            <td>{{$user->mail}}</td>
+            <td>{{$user->email}}</td>
             <td>{{$user->phone}}</td>
             <td>{{$user->street}} {{$user->city}} {{$user->state}} {{$user->CP}}</td>
             <td>
@@ -112,8 +143,8 @@
 
                     
                         <div class="form-group">
-                            <label for="mail">Correo</label>
-                            <input type="email" value="{{$user->mail}}" name="mail" id="mail" class="form-control">
+                            <label for="emailPost">Correo</label>
+                            <input type="email" value="{{$user->email}}" name="emailPost" id="emailPost" class="form-control">
                         </div>
 
                         <div class="row">

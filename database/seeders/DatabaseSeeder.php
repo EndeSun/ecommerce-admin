@@ -22,21 +22,21 @@ class DatabaseSeeder extends Seeder
     /* Para Empezar la base de datos con algunos datos --> Semillas */
     //Usuarios 
     private $usuarios = [
-        ['rol' => 'clients', 'client_password' => '123', 'name' => 'Ende', 'surname' => 'Sun', 'phone' => 681671050, 'mail' => '1195562121ende@gmail.com', 'street' => 'Calle Francia 1, 41', 'city' => 'Alicante', 'state' => 'Comunidad Valenciana', 'CP' => '03690', 'registration_date' => '2021-12-24'],
-        ['rol' => 'stock worker', 'client_password' => '456', 'name' => 'John', 'surname' => 'Doe', 'phone' => 123456789, 'mail' => 'john.doe@example.com', 'street' => '123 Main St', 'city' => 'New York', 'state' => 'NY', 'CP' => '10001', 'registration_date' => '2022-01-15'],
-        ['rol' => 'sales supervisor', 'client_password' => '789', 'name' => 'Alice', 'surname' => 'Smith', 'phone' => 987654321, 'mail' => 'alice.smith@example.com', 'street' => '456 Oak Ave', 'city' => 'Los Angeles', 'state' => 'CA', 'CP' => '90001', 'registration_date' => '2022-02-05'],
-        ['rol' => 'marketing coordinator', 'client_password' => 'abc', 'name' => 'Emma', 'surname' => 'Johnson', 'phone' => 555666777, 'mail' => 'emma.johnson@example.com', 'street' => '789 Pine Rd', 'city' => 'Chicago', 'state' => 'IL', 'CP' => '60601', 'registration_date' => '2022-03-20'],
-        ['rol' => 'operation manager', 'client_password' => 'def', 'name' => 'Michael', 'surname' => 'Brown', 'phone' => 333222111, 'mail' => 'michael.brown@example.com', 'street' => '101 Elm Ln', 'city' => 'Houston', 'state' => 'TX', 'CP' => '77001', 'registration_date' => '2022-04-10'],
-        ['rol' => 'main administrator', 'client_password' => 'ghi', 'name' => 'Sophia', 'surname' => 'Martinez', 'phone' => 999888777, 'mail' => 'sophia.martinez@example.com', 'street' => '222 Maple Blvd', 'city' => 'Phoenix', 'state' => 'AZ', 'CP' => '85001', 'registration_date' => '2022-05-25'],
-        ['rol' => 'clients', 'client_password' => '456', 'name' => 'Luis', 'surname' => 'González', 'phone' => 333444555, 'mail' => 'luis.gonzalez@example.com', 'street' => '333 Cedar St', 'city' => 'Miami', 'state' => 'FL', 'CP' => '33101', 'registration_date' => '2022-06-30'],
-        ['rol' => 'stock worker', 'client_password' => '789', 'name' => 'Emily', 'surname' => 'Taylor', 'phone' => 666777888, 'mail' => 'emily.taylor@example.com', 'street' => '444 Pine Ave', 'city' => 'San Francisco', 'state' => 'CA', 'CP' => '94101', 'registration_date' => '2022-07-15'],
-        ['rol' => 'sales supervisor', 'client_password' => 'abc', 'name' => 'David', 'surname' => 'Rodriguez', 'phone' => 222333444, 'mail' => 'david.rodriguez@example.com', 'street' => '555 Oak St', 'city' => 'Seattle', 'state' => 'WA', 'CP' => '98101', 'registration_date' => '2022-08-20'],
-        ['rol' => 'marketing coordinator', 'client_password' => 'def', 'name' => 'Sophie', 'surname' => 'Brown', 'phone' => 777888999, 'mail' => 'sophie.brown@example.com', 'street' => '666 Elm Blvd', 'city' => 'Denver', 'state' => 'CO', 'CP' => '80201', 'registration_date' => '2022-09-05'],
-        ['rol' => 'operation manager', 'client_password' => 'ghi', 'name' => 'Daniel', 'surname' => 'Lee', 'phone' => 111222333, 'mail' => 'daniel.lee@example.com', 'street' => '777 Cedar Ave', 'city' => 'Dallas', 'state' => 'TX', 'CP' => '75201', 'registration_date' => '2022-10-10'],
-        ['rol' => 'main administrator', 'client_password' => '123', 'name' => 'Olivia', 'surname' => 'Martinez', 'phone' => 888999000, 'mail' => 'olivia.martinez@example.com', 'street' => '888 Pine Rd', 'city' => 'Las Vegas', 'state' => 'NV', 'CP' => '89101', 'registration_date' => '2022-11-25'],
-        ['rol' => 'clients', 'client_password' => 'abc', 'name' => 'Juan', 'surname' => 'Perez', 'phone' => 555444333, 'mail' => 'juan.perez@example.com', 'street' => '999 Maple St', 'city' => 'Orlando', 'state' => 'FL', 'CP' => '32801', 'registration_date' => '2022-12-30'],
-        ['rol' => 'stock worker', 'client_password' => 'def', 'name' => 'Emma', 'surname' => 'Williams', 'phone' => 888777666, 'mail' => 'emma.williams@example.com', 'street' => '123 Oak Ave', 'city' => 'Atlanta', 'state' => 'GA', 'CP' => '30301', 'registration_date' => '2023-01-05'],
-        ['rol' => 'sales supervisor', 'client_password' => 'ghi', 'name' => 'Lucas', 'surname' => 'Garcia', 'phone' => 222555888, 'mail' => 'lucas.garcia@example.com', 'street' => '456 Cedar St', 'city' => 'Boston', 'state' => 'MA', 'CP' => '02101', 'registration_date' => '2023-02-10'],
+        ['rol' => 'client', 'password' => '123', 'name' => 'Ende', 'surname' => 'Sun', 'phone' => 681671050, 'email' => '1195562121ende@gmail.com', 'street' => 'Calle Francia 1, 41', 'city' => 'Alicante', 'state' => 'Comunidad Valenciana', 'CP' => '03690', 'registration_date' => '2021-12-24'],
+        ['rol' => 'admin', 'password' => '456', 'name' => 'John', 'surname' => 'Doe', 'phone' => 123456789, 'email' => 'john.doe@example.com', 'street' => '123 Main St', 'city' => 'New York', 'state' => 'NY', 'CP' => '10001', 'registration_date' => '2022-01-15'],
+        ['rol' => 'worker', 'password' => '789', 'name' => 'Alice', 'surname' => 'Smith', 'phone' => 987654321, 'email' => 'alice.smith@example.com', 'street' => '456 Oak Ave', 'city' => 'Los Angeles', 'state' => 'CA', 'CP' => '90001', 'registration_date' => '2022-02-05'],
+        ['rol' => 'worker', 'password' => 'abc', 'name' => 'Emma', 'surname' => 'Johnson', 'phone' => 555666777, 'email' => 'emma.johnson@example.com', 'street' => '789 Pine Rd', 'city' => 'Chicago', 'state' => 'IL', 'CP' => '60601', 'registration_date' => '2022-03-20'],
+        ['rol' => 'worker', 'password' => 'def', 'name' => 'Michael', 'surname' => 'Brown', 'phone' => 333222111, 'email' => 'michael.brown@example.com', 'street' => '101 Elm Ln', 'city' => 'Houston', 'state' => 'TX', 'CP' => '77001', 'registration_date' => '2022-04-10'],
+        ['rol' => 'worker', 'password' => 'ghi', 'name' => 'Sophia', 'surname' => 'Martinez', 'phone' => 999888777, 'email' => 'sophia.martinez@example.com', 'street' => '222 Maple Blvd', 'city' => 'Phoenix', 'state' => 'AZ', 'CP' => '85001', 'registration_date' => '2022-05-25'],
+        ['rol' => 'client', 'password' => '456', 'name' => 'Luis', 'surname' => 'González', 'phone' => 333444555, 'email' => 'luis.gonzalez@example.com', 'street' => '333 Cedar St', 'city' => 'Miami', 'state' => 'FL', 'CP' => '33101', 'registration_date' => '2022-06-30'],
+        ['rol' => 'admin', 'password' => '789', 'name' => 'Emily', 'surname' => 'Taylor', 'phone' => 666777888, 'email' => 'emily.taylor@example.com', 'street' => '444 Pine Ave', 'city' => 'San Francisco', 'state' => 'CA', 'CP' => '94101', 'registration_date' => '2022-07-15'],
+        ['rol' => 'worker', 'password' => 'abc', 'name' => 'David', 'surname' => 'Rodriguez', 'phone' => 222333444, 'email' => 'david.rodriguez@example.com', 'street' => '555 Oak St', 'city' => 'Seattle', 'state' => 'WA', 'CP' => '98101', 'registration_date' => '2022-08-20'],
+        ['rol' => 'worker', 'password' => 'def', 'name' => 'Sophie', 'surname' => 'Brown', 'phone' => 777888999, 'email' => 'sophie.brown@example.com', 'street' => '666 Elm Blvd', 'city' => 'Denver', 'state' => 'CO', 'CP' => '80201', 'registration_date' => '2022-09-05'],
+        ['rol' => 'worker', 'password' => 'ghi', 'name' => 'Daniel', 'surname' => 'Lee', 'phone' => 111222333, 'email' => 'daniel.lee@example.com', 'street' => '777 Cedar Ave', 'city' => 'Dallas', 'state' => 'TX', 'CP' => '75201', 'registration_date' => '2022-10-10'],
+        ['rol' => 'worker', 'password' => '123', 'name' => 'Olivia', 'surname' => 'Martinez', 'phone' => 888999000, 'email' => 'olivia.martinez@example.com', 'street' => '888 Pine Rd', 'city' => 'Las Vegas', 'state' => 'NV', 'CP' => '89101', 'registration_date' => '2022-11-25'],
+        ['rol' => 'client', 'password' => 'abc', 'name' => 'Juan', 'surname' => 'Perez', 'phone' => 555444333, 'email' => 'juan.perez@example.com', 'street' => '999 Maple St', 'city' => 'Orlando', 'state' => 'FL', 'CP' => '32801', 'registration_date' => '2022-12-30'],
+        ['rol' => 'admin', 'password' => 'def', 'name' => 'Emma', 'surname' => 'Williams', 'phone' => 888777666, 'email' => 'emma.williams@example.com', 'street' => '123 Oak Ave', 'city' => 'Atlanta', 'state' => 'GA', 'CP' => '30301', 'registration_date' => '2023-01-05'],
+        ['rol' => 'worker', 'password' => 'ghi', 'name' => 'Lucas', 'surname' => 'Garcia', 'phone' => 222555888, 'email' => 'lucas.garcia@example.com', 'street' => '456 Cedar St', 'city' => 'Boston', 'state' => 'MA', 'CP' => '02101', 'registration_date' => '2023-02-10'],
     ];
     private function seedUsers()
     {
@@ -44,11 +44,11 @@ class DatabaseSeeder extends Seeder
         foreach ($this->usuarios as $usuario) {
             $p = new User;
             $p->rol = $usuario['rol'];
-            $p->client_password = bcrypt($usuario['client_password']);
+            $p->password = bcrypt($usuario['password']);
             $p->name = $usuario['name'];
             $p->surname = $usuario['surname'];
             $p->phone = $usuario['phone'];
-            $p->mail = $usuario['mail'];
+            $p->email = $usuario['email'];
             $p->street = $usuario['street'];
             $p->city = $usuario['city'];
             $p->state = $usuario['state'];

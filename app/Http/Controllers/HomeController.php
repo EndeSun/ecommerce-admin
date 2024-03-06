@@ -6,8 +6,23 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function getHome(){
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function getHome()
+    {
         return redirect()->action([DashboardController::class, 'getDashboard']);
     }
-    //
 }

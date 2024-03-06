@@ -51,7 +51,6 @@ function close() {
     document.getElementById("head-content").style.marginLeft = "0px";
     document.getElementById("main-content").style.marginLeft = "0px";
     document.getElementById("section-perfiles").style.marginRight = "0px";
-
     state = "close";
 }
 // ----------------------------------------------------------------

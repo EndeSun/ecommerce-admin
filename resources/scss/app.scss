@@ -8,8 +8,7 @@ $offcanvas-transition-duration:     .6s; */
 $initialPosition: 250px;
 $primaryColor: rgb(62 92 122);
 $minimunSpace: 0.5rem;
-
-@import "../node_modules/bootstrap/scss/bootstrap";
+$full-round: 9999px;
 
 a,
 ol,
@@ -30,21 +29,31 @@ header {
     align-items: center;
     padding: 0px 15px 0px;
     height: 60px;
-    margin-left: $initialPosition;
     position: fixed; /* Set the navbar to fixed position */
     top: 0; /* Position the navbar at the top of the page */
     width: 100vw; /* Full width */
     /* Transición del margen */
-    transition: margin-left 0.5s;
 
-
-
+    section {
+        #logo-img {
+            width: 3rem;
+            border-radius: $full-round;
+        }
+    }
     /* Estilo del icono del menú */
-    #menu-icon, #expand-icon {
+    #menu-icon,
+    #expand-icon {
         background-color: transparent;
         border-style: none;
     }
-    #section-perfiles{
+}
+
+#head-content {
+    /* Transición del margen */
+    margin-left: $initialPosition;
+    transition: margin-left 0.5s;
+
+    #section-perfiles {
         margin-right: $initialPosition;
         transition: margin-right 0.5s;
     }
@@ -54,12 +63,15 @@ header {
 /* Sección del contenido principal */
 main {
     margin-top: 50px;
-    padding: calc($minimunSpace*3);
-    margin-left: $initialPosition;
-    height: 100%;
+    height: 100vh;
     background-color: aliceblue;
+    padding: calc($minimunSpace * 3);
+}
+
+#main-content {
     /* Transición del margen */
     transition: margin-left 0.5s;
+    margin-left: $initialPosition;
 }
 
 /* ---------------------------- */
@@ -77,17 +89,16 @@ i {
     /* ---------------------------- */
     /* Imagen de perfil */
     .perfil {
-        border-radius: 9999px;
+        border-radius: $full-round;
         width: 2rem;
         height: 2rem;
     }
 }
 
-/* ---------------------------- */
-/* Sidebar behavior */
+
+// Navbar
 nav {
     height: 100%;
-    width: $initialPosition;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -95,10 +106,13 @@ nav {
     background-color: $primaryColor;
     overflow-x: hidden;
     padding-top: 20px;
+}
 
+// Main Navbar
+#mySidenav {
     /* Transición del margen */
+    width: $initialPosition;
     transition: 0.5s;
-
     /* título de la sección nav */
     .header-nav {
         display: flex;
@@ -108,8 +122,6 @@ nav {
         gap: 1rem;
         margin-bottom: 1rem;
         padding-bottom: $minimunSpace;
-
-
         /* Título del nav */
         h1 {
             text-shadow: 1px 1px;
@@ -119,9 +131,7 @@ nav {
             color: white;
         }
         img {
-            width: 3.5rem;
-            height: 3.5rem;
-            border-radius: 9999px;
+            border-radius: $full-round;
         }
     }
 
@@ -147,15 +157,13 @@ nav {
             &:hover {
                 cursor: pointer;
             }
-
         }
 
-        .sublist-container{
-            li{
+        .sublist-container {
+            li {
                 margin-top: $minimunSpace;
             }
         }
-
 
         /* Comportamiento del chevron y la sublista */
         .chevron {
@@ -167,8 +175,6 @@ nav {
         .sublist-container.hidden {
             display: none;
         }
-
-
     }
     /* ---------------------------- */
     /* Estilo de la clase seleccionada */
@@ -176,5 +182,33 @@ nav {
         border-left: 3px solid #6adee2;
         background-color: rgba(126, 123, 129, 0.199);
         padding-left: calc($minimunSpace / 2);
+    }
+}
+
+// Estilos de tabla
+table {
+    button {
+        border: 1px solid black;
+        border-radius: 50%;
+        padding: 0.3rem 0.5rem 0.3rem;
+        background-color: transparent;
+        color: rgb(81, 87, 199);
+        &:hover {
+            background-color: rgb(224, 245, 249);
+            transition: background-color 0.5s;
+        }
+    }
+
+    img {
+        border-radius: $full-round;
+    }
+}
+
+// inputs de filtros
+.filters {
+    input {
+        opacity: 80%;
+        border-radius: 10px;
+        padding: 5px 10px 5px;
     }
 }

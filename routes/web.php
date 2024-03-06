@@ -22,12 +22,14 @@ use App\Http\Controllers\ProductosController;
 
 Route::get('/', [HomeController::class, 'getHome']);//✅
 
+Route::group(['middleware' => 'auth'], function() {
 /* Dashboard principal */
 Route::get("/dashboard", [DashboardController::class, 'getDashboard']);
 
 /* Módulo de clientes */
 Route::get("/clientes", [ClientController::class, 'getClients']); //✅
 Route::put('/clientes/edit/{id}', [ClientController::class, 'putEditClient']);
+Route::post('/clientes/post', [ClientController::class, 'postClient']);
 
 
 /* Módulo de productos */
@@ -44,3 +46,6 @@ Route::get("/usuarios", [UsuariosController::class, 'getUsuarios']);//✅🟥
 Route::get("/rol", [UsuariosController::class, 'getUsuariosRol']);//✅🟥
 Route::get("/usuarios/informes", [UsuariosController::class, 'getUsuariosInformes']);
 
+});
+
+Auth::routes();
