@@ -63,7 +63,8 @@ header {
 /* Sección del contenido principal */
 main {
     margin-top: 50px;
-    height: 100vh;
+    height: 100%;
+    width: 100%;
     background-color: aliceblue;
     padding: calc($minimunSpace * 3);
 }
@@ -217,28 +218,5 @@ table {
         opacity: 80%;
         border-radius: 10px;
         padding: 5px 10px 5px;
-    }
-}
-
-/* ---------------------------- */
-//Barra de navegación
-.navigation {
-    svg{
-        width: 2rem;
-    }   
-    div{
-        div{
-            p{
-                margin-top: 1rem;
-                margin-left: 0.5rem;
-            }
-        }
-        a{
-            border-radius: 0.5rem;
-            color: black !important;
-        }
-        span{
-            border-radius: 0.5rem;
-        }
     }
 }

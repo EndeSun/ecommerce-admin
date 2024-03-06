@@ -1,5 +1,5 @@
 @push('scripts')
-    @vite(['resources/scss/clientes.scss'])
+    @vite(['resources/scss/clientes.scss', 'resources/js/clientes.js'])
 @endpush
 
 
@@ -59,14 +59,8 @@
     </div>
 
 
-    <!-- Filters for searching -->
-    <div class="mb-2 filters">
-        <input type="text" placeholder="Buscar por nombre">
-        <input type="email" placeholder="Buscar por correo">
-    </div>
-
     <!-- Main table -->
-    <table class="table">
+    <table id="clientes-tabla">
         <thead>
             <tr>
                 <th scope="col"></th>
@@ -194,5 +188,16 @@
                 </form>
             @endforeach
         </tbody>
+        <tfoot>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Teléfono</th>
+                <th scope="col">Dirección</th>
+                <th scope="col">Importe comprado</th>
+                <th scope="col">Editar</th>
+            </tr>
+        </tfoot>
     </table>
 @endsection

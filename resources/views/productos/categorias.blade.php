@@ -1,5 +1,5 @@
 @push('scripts')
-    @vite(['resources/scss/categorias.scss'])
+    @vite(['resources/scss/categorias.scss', 'resources/js/categorias.js'])
 @endpush
 
 @extends('layouts.master')
@@ -11,10 +11,6 @@
         Añadir nueva categoría
     </button>
 
-    <div class="mb-2 filters">
-        <input type="text" placeholder="Buscar por Nombre">
-        <input type="email" placeholder="Buscar por Categoría Padre">
-    </div>
 
     <div class="modal fade" id="add_category" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-scrollable">
@@ -24,44 +20,40 @@
                 <!-- TO_DO: añadir el método de category/post y en web.route.php -->
                 <form action="{{ url('category/post') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-
                     <div class="modal-header">
                         <h2 class="modal-title fs-5" id="exampleModalLabel">Añadir nueva categoría</h2>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-
-
                     <div class="modal-body">
 
                     </div>
-
-
-
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                         <button type="submit" class="btn btn-success">Agregar categoría</button>
                     </div>
+                </form>
             </div>
-            </form>
         </div>
     </div>
 
-    <table class="table">
+    <table id="categoria-tabla" class="display nowrap" style="width:100%">
         <thead>
             <tr>
-                <th scope="col"></th>
-                <th scope="col">Color de fondo</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Categoría padre</th>
-                <th scope="col">Editar</th>
+                <th></th>
+                <th>Color de fondo</th>
+                <th>Nombre</th>
+                <th>Categoría padre</th>
+                <th>Editar</th>
             </tr>
         </thead>
 
         <tbody>
             @foreach ($arrayCategorias as $categoria)
                 <tr>
-                    <th scope="row"><img src="{{ asset($categoria->imagen) }}" alt="Imagen categoría" width="35rem"
-                            class="img-fluid"></th>
+                    <td scope="row">
+                        <img src="{{ asset($categoria->imagen) }}" alt="categoría" width="35rem"
+                            class="img-fluid">
+                    </td>
                     <td style="background-color: {{ $categoria->fondo }};"></td>
                     <td>{{ $categoria->name }}</td>
 
@@ -77,7 +69,6 @@
                         </button>
                     </td>
                 </tr>
-
                 <!-- Modal de edición de cada categoria TO_DO:implementar el método y añadir al web.route.php -->
                 <form action="{{ url('categoria/edit', ['id' => $categoria->id]) }}" method="POST"
                     enctype="multipart/form-data"> <!-- Tipo de codificación para enviar ficheros -->
@@ -126,9 +117,14 @@
                 </form>
             @endforeach
         </tbody>
+        <tfoot>
+            <tr>
+                <th></th>
+                <th>Color de fondo</th>
+                <th>Nombre</th>
+                <th>Categoría padre</th>
+                <th>Editar</th>
+            </tr>
+        </tfoot>
     </table>
-
-    <div class="navigation">
-        {{ $arrayCategorias->links() }}
-    </div>
 @endsection

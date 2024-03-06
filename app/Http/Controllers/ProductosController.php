@@ -10,7 +10,7 @@ use App\Models\Product;
 class ProductosController extends Controller
 {
     public function getCategorias(){
-        $arrayCategorias = Category::paginate(10);
+        $arrayCategorias = Category::all();
         return view('productos/categorias', ['arrayCategorias' => $arrayCategorias]);
     }
 
