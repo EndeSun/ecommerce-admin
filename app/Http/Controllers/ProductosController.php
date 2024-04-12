@@ -17,9 +17,8 @@ class ProductosController extends Controller
     public function getProductos(){
         $arrayProductos = Product::all();
         return view('productos/productos', ['arrayProductos' => $arrayProductos]);
-
-        
     }
+    
     public function getProductosInformes(){
         return view('productos/productos_informes');
     }

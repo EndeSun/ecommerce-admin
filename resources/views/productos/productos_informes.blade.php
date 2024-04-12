@@ -2,8 +2,6 @@
 
 @section('content-master')
 
-<p>Pantalla informe de productos</p>
-
-
+<p>Informe Productos</p>
 
 @endsection

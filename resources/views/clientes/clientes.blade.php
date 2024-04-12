@@ -1,18 +1,18 @@
 @push('scripts')
-    @vite(['resources/scss/clientes.scss', 'resources/js/clientes.js'])
+    @vite(['resources/js/clientes.js'])
 @endpush
 
 
 @extends('layouts.master')
-
 @section('content-master')
     <h1>Clientes</h1>
 
-    <!-- Section to add new client -->
+    <!-- Button add new client -->
     <button data-bs-toggle="modal" data-bs-target="#add_client" class="btn btn-warning btn_add_client">
         Añadir nuevo cliente
     </button>
 
+    {{-- Add New Client Form --}}
     <div class="modal fade" id="add_client" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-scrollable">
             <div class="modal-content">
@@ -53,30 +53,30 @@
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-success">Agregar cliente</button>
                     </div>
+                </form>
             </div>
-            </form>
         </div>
     </div>
 
 
-    <!-- Main table -->
-    <table id="clientes-tabla">
-        <thead>
+    <!-- Main table custom fields-->
+    <table id="clientes-tabla" class="table table-striped table-borderer shadow-lg mt-4" style="width:100%">
+        <thead class="bg-info">
             <tr>
-                <th scope="col"></th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Correo</th>
-                <th scope="col">Teléfono</th>
-                <th scope="col">Dirección</th>
-                <th scope="col">Importe comprado</th>
-                <th scope="col">Editar</th>
+                <th></th>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+                <th>Dirección</th>
+                <th>Importe comprado</th>
+                <th>Editar</th>
             </tr>
         </thead>
 
         <tbody>
             @foreach ($arrayUsers as $user)
                 <tr>
-                    <th scope="row"><img src="{{ asset($user->image) }}" alt="Imagen perfil" width="35rem"
+                    <th><img src="{{ asset($user->image) }}" alt="Imagen perfil" width="35rem"
                             class="img-fluid"></th>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
@@ -98,6 +98,7 @@
                     enctype="multipart/form-data"> <!-- Tipo de codificación para enviar ficheros -->
                     @method('PUT')
                     @csrf
+                    
                     <div class="modal fade modal-xl" id="modal-{{ $user->id }}" tabindex="-1"
                         aria-labelledby="modalLabel-{{ $user->id }}" aria-hidden="true" modal-dialog-scrollable
                         modal-dialog-centered>
@@ -188,16 +189,5 @@
                 </form>
             @endforeach
         </tbody>
-        <tfoot>
-            <tr>
-                <th scope="col"></th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Correo</th>
-                <th scope="col">Teléfono</th>
-                <th scope="col">Dirección</th>
-                <th scope="col">Importe comprado</th>
-                <th scope="col">Editar</th>
-            </tr>
-        </tfoot>
     </table>
 @endsection

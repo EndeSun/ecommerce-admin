@@ -7,8 +7,6 @@ use App\Models\User;
 use App\Models\Order;
 use App\Models\Order_product;
 
-
-
 class ClientController extends Controller
 {
 
@@ -20,7 +18,9 @@ class ClientController extends Controller
                 $query->withSum('orders_product', 'price');
             }
         ])->get();
-        return view('clientes/clientes', ['arrayUsers' => $arrayUsers]);
+
+        //Return the filter dataTable for our html file
+        return view('clientes.clientes', ['arrayUsers' => $arrayUsers]);
     }
 
     public function putEditClient(Request $request, $id)

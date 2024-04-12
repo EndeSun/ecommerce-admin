@@ -1,3 +1,5 @@
+{{-- Esta plantilla se ha creado de manera automáticamente, no se utiliza en nuestro proyecto --}}
+
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -76,5 +78,9 @@
             @yield('content')
         </main>
     </div>
+
+    {{-- To be able to load our custom scripts --}}
+    @stack('scripts')
 </body>
 </html>
+ 

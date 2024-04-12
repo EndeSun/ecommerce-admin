@@ -18,7 +18,6 @@ li {
     color: white;
     text-decoration-line: none;
 }
-
 /* ---------------------------- */
 /* Sección de la cabecera */
 header {
@@ -31,7 +30,9 @@ header {
     height: 60px;
     position: fixed; /* Set the navbar to fixed position */
     top: 0; /* Position the navbar at the top of the page */
+    left: 0;
     width: 100vw; /* Full width */
+    z-index: 10;
     /* Transición del margen */
 
     section {
@@ -62,12 +63,19 @@ header {
 /* ---------------------------- */
 /* Sección del contenido principal */
 main {
-    margin-top: 50px;
-    height: 100%;
-    width: 100%;
+    height: 100vw;
+    width: 100vw;
+    padding: 70px 30px 20px;
     background-color: aliceblue;
-    padding: calc($minimunSpace * 3);
+    overflow: scroll;
+
+    //Add button
+    button {
+        margin-bottom: calc($minimunSpace * 2);
+    }
 }
+
+
 
 #main-content {
     /* Transición del margen */
@@ -193,8 +201,16 @@ i {
     }
 }
 
-// Estilos de tabla
+// Table style
 table {
+    width: 100%;
+
+    td,
+    th,
+    span {
+        text-align: left !important;
+    }
+
     button {
         border: 1px solid black;
         border-radius: 50%;
@@ -212,11 +228,3 @@ table {
     }
 }
 
-// inputs de filtros
-.filters {
-    input {
-        opacity: 80%;
-        border-radius: 10px;
-        padding: 5px 10px 5px;
-    }
-}

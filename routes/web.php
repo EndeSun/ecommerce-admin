@@ -7,6 +7,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\PedidosController;
 use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\ProductosController;
+use DataTables;
 
 
 /*

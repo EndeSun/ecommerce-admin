@@ -197,8 +197,8 @@
         <!-- Sección del contenido principal -->
         @guest
             <main>
-            @else
-                <main id="main-content">
-                @endguest
-                @yield('content')
+        @else
+            <main id="main-content">
+        @endguest
+            @yield('content')
             </main>

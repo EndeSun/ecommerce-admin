@@ -1,4 +1,7 @@
 import "./bootstrap";
+import 'laravel-datatables-vite';
+
+
 let myDocument = document.documentElement;
 /* Función para expandir el navegador */
 let btn = document.getElementById("btn-expand");

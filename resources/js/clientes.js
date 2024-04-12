@@ -1,7 +1,4 @@
-new DataTable("#clientes-tabla", {
-    layout: {
-        topStart: {
-            buttons: ["copy", "csv", "excel", "pdf", "print"],
-        },
-    },
-});
+/* $(document).ready(function() {
+    // Tu código de inicialización de DataTables aquí
+    $('#clientes-tabla').DataTable();
+}); */

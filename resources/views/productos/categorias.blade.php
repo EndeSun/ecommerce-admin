@@ -1,5 +1,5 @@
 @push('scripts')
-    @vite(['resources/scss/categorias.scss', 'resources/js/categorias.js'])
+    @vite(['resources/js/categorias.js'])
 @endpush
 
 @extends('layouts.master')
@@ -15,7 +15,6 @@
     <div class="modal fade" id="add_category" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-scrollable">
             <div class="modal-content">
-
                 <!-- Add new Category secction  -->
                 <!-- TO_DO: añadir el método de category/post y en web.route.php -->
                 <form action="{{ url('category/post') }}" method="POST" enctype="multipart/form-data">
