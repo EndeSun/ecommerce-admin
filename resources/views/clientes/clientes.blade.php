@@ -58,26 +58,67 @@
         </div>
     </div>
 
+    {{-- Filter input form --}}
+    {{--  <form action="{{ url('/clientes') }}" method="POST">
+        @csrf
+        <input type="text" name="search" id="search" value="{{$search}}">
+        <button type="submit">Filtrar</button>
+    </form> --}}
 
     <!-- Main table custom fields-->
     <table id="clientes-tabla" class="table table-striped table-borderer shadow-lg mt-4" style="width:100%">
         <thead class="bg-info">
             <tr>
                 <th></th>
-                <th>Nombre</th>
-                <th>Correo</th>
-                <th>Teléfono</th>
-                <th>Dirección</th>
-                <th>Importe comprado</th>
-                <th>Editar</th>
+
+                <th>
+                    <div class="d-flex flex-row align-items-center">
+                        <p class="mb-0">Nombre</p>
+                        <div class="d-flex flex-column mx-3">
+                            <a href="{{ url('clientes?sort=name&order=asc') }}"><i class="fa-solid fa-caret-up"></i></a>
+                            <a href="{{ url('clientes?sort=name&order=desc') }}"><i class="fa-solid fa-caret-down"></i></a>
+                        </div>
+                    </div>
+                </th>
+
+                <th>
+                    <div class="d-flex flex-row align-items-center">
+                        <p class="mb-0">Correo</p>
+                        <div class="d-flex flex-column mx-3">
+                            <a href="{{ url('clientes?sort=email&order=asc') }}"><i class="fa-solid fa-caret-up"></i></a>
+                            <a href="{{ url('clientes?sort=email&order=desc') }}"><i class="fa-solid fa-caret-down"></i></a>
+                        </div>
+                    </div>
+                </th>
+
+                <th>
+                    <div class="d-flex flex-row align-items-center">
+                        <p class="mb-0">Teléfono</p>
+                        <div class="d-flex flex-column mx-3">
+                            <a href="{{ url('clientes?sort=phone&order=asc') }}"><i class="fa-solid fa-caret-up"></i></a>
+                            <a href="{{ url('clientes?sort=phone&order=desc') }}"><i class="fa-solid fa-caret-down"></i></a>
+                        </div>
+                    </div>
+                </th>
+
+                <th>
+                    <p>Dirección</p>
+                </th>
+
+                <th>
+                    <p>Importe comprado</p>
+                </th>
+
+                <th>
+                    <p>Editar</p>
+                </th>
             </tr>
         </thead>
 
         <tbody>
             @foreach ($arrayUsers as $user)
                 <tr>
-                    <th><img src="{{ asset($user->image) }}" alt="Imagen perfil" width="35rem"
-                            class="img-fluid"></th>
+                    <th><img src="{{ asset($user->image) }}" alt="Imagen perfil" width="35rem" class="img-fluid"></th>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->phone }}</td>
@@ -98,7 +139,7 @@
                     enctype="multipart/form-data"> <!-- Tipo de codificación para enviar ficheros -->
                     @method('PUT')
                     @csrf
-                    
+
                     <div class="modal fade modal-xl" id="modal-{{ $user->id }}" tabindex="-1"
                         aria-labelledby="modalLabel-{{ $user->id }}" aria-hidden="true" modal-dialog-scrollable
                         modal-dialog-centered>
@@ -190,4 +231,10 @@
             @endforeach
         </tbody>
     </table>
+
+    @if (isset($sort) == false)
+        {{ $arrayUsers->links() }}
+    @else
+        {{ $arrayUsers->appends(['sort' => $sort, 'order' => $order])->links() }}
+    @endif
 @endsection

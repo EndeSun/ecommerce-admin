@@ -10,17 +10,30 @@ use App\Models\Order_product;
 class ClientController extends Controller
 {
 
-    public function getClients()
+    public function getClients(Request $request)
     {
+        $paginate = 2;
+        $sort = 'name';
+        $order = 'asc';
+
+            
+
+        if($request->has('sort')) {
+            $sort = $request->sort;
+            $order = $request->order;
+        }
+
         $arrayUsers = User::where('rol', '=', 'client')
         ->with([
             'orders' => function ($query) {
                 $query->withSum('orders_product', 'price');
             }
-        ])->get();
+        ])
+        ->orderBy($sort, $order)
+        ->paginate( $paginate );
 
-        //Return the filter dataTable for our html file
-        return view('clientes.clientes', ['arrayUsers' => $arrayUsers]);
+
+        return view('clientes.clientes', compact('arrayUsers', 'sort', 'order'));
     }
 
     public function putEditClient(Request $request, $id)

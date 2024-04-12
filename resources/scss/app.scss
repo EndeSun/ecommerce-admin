@@ -9,7 +9,7 @@ $initialPosition: 250px;
 $primaryColor: rgb(62 92 122);
 $minimunSpace: 0.5rem;
 $full-round: 9999px;
-
+$border-radius: 8px;
 a,
 ol,
 ul,
@@ -209,6 +209,10 @@ table {
     th,
     span {
         text-align: left !important;
+        a{
+            list-style: none;
+            color: black;
+        }
     }
 
     button {
@@ -225,6 +229,24 @@ table {
 
     img {
         border-radius: $full-round;
+    }
+}
+
+/* Barra de paginación*/
+nav.flex.justify-between.items-center{
+    div{
+        span{
+            border-radius: $border-radius;
+        }
+        a{
+            color: black ;
+            border-radius: $border-radius;
+        }
+        margin-bottom: 1rem;
+    }
+    
+    svg{
+        width: 2rem;
     }
 }
 

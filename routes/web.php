@@ -7,7 +7,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\PedidosController;
 use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\ProductosController;
-use DataTables;
+
 
 
 /*
@@ -28,7 +28,7 @@ Route::group(['middleware' => 'auth'], function() {
 Route::get("/dashboard", [DashboardController::class, 'getDashboard']);
 
 /* Módulo de clientes */
-Route::get("/clientes", [ClientController::class, 'getClients']); //✅
+Route::any("/clientes", [ClientController::class, 'getClients']); //✅
 Route::put('/clientes/edit/{id}', [ClientController::class, 'putEditClient']);
 Route::post('/clientes/post', [ClientController::class, 'postClient']);
 
