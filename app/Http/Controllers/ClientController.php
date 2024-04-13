@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Order_product;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ClientController extends Controller
 {
@@ -34,6 +35,14 @@ class ClientController extends Controller
 
 
         return view('clientes.clientes', compact('arrayUsers', 'sort', 'order'));
+    }
+
+    public function exportPDF(){
+
+        $user = User::all();
+        $pdf = Pdf::loadView('clientes.report', compact('users', ));
+        return $pdf->stream('clientes.pdf');
+
     }
 
     public function putEditClient(Request $request, $id)
