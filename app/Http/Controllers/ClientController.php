@@ -12,28 +12,31 @@ class ClientController extends Controller
 
     public function getClients(Request $request)
     {
-        $paginate = 2;
-        $sort = 'name';
-        $order = 'asc';
-
-            
-
-        if($request->has('sort')) {
-            $sort = $request->sort;
-            $order = $request->order;
+        $paginate = 10;
+        $search = $request->filled('search') ? $request->search : '';
+        $sort = $request->has('sort') ? $request->sort : 'name';
+        $order = $request->has('order') ? $request->order : 'asc';
+    
+        $query = User::where('rol', '=', 'client')
+            ->with([
+                'orders' => function ($query) {
+                    $query->withSum('orders_product', 'price');
+                }
+            ]);
+    
+        if ($search != '') {
+            $arrayUsers = $query->where(function($query) use ($search) {
+                    $query->where('name', 'LIKE', '%'.$search.'%')
+                        ->orWhere('email', 'LIKE', '%'.$search.'%');
+                })
+                ->orderBy($sort, $order)
+                ->paginate($paginate);
+        } else {
+            $arrayUsers = $query->orderBy($sort, $order)
+                ->paginate($paginate);
         }
-
-        $arrayUsers = User::where('rol', '=', 'client')
-        ->with([
-            'orders' => function ($query) {
-                $query->withSum('orders_product', 'price');
-            }
-        ])
-        ->orderBy($sort, $order)
-        ->paginate( $paginate );
-
-
-        return view('clientes.clientes', compact('arrayUsers', 'sort', 'order'));
+        
+        return view('clientes.clientes', compact('arrayUsers', 'sort', 'order', 'search'));
     }
 
     public function putEditClient(Request $request, $id)

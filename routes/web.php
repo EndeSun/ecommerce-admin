@@ -28,7 +28,7 @@ Route::group(['middleware' => 'auth'], function() {
 Route::get("/dashboard", [DashboardController::class, 'getDashboard']);
 
 /* Módulo de clientes */
-Route::any("/clientes", [ClientController::class, 'getClients']); //✅
+Route::any("/clientes", [ClientController::class, 'getClients'])->name('arrayUsers'); //✅
 Route::put('/clientes/edit/{id}', [ClientController::class, 'putEditClient']);
 Route::post('/clientes/post', [ClientController::class, 'postClient']);
 
