@@ -46,14 +46,14 @@
                     <td class="text-center">{{ $user->name }}</td>
                     <td class="text-center">{{ $user->email }}</td>
                     <td class="text-center">{{ $user->phone }}</td>
-                    <td class="text-center">{{ $user->street }} {{ $user->city }} {{ $user->state }} {{ $user->CP }}</td>
+                    <td class="text-center">{{ $user->street }} {{ $user->city }} {{ $user->state }}
+                        {{ $user->CP }}</td>
                     <td class="text-center">
                         {{ $user->orders->sum('orders_product_sum_price') }} €
                     </td>
                 </tr>
             @endforeach
         </tbody>
-
+    </table>
 </body>
-
 </html>
