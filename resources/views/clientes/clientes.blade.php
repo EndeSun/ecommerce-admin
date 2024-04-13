@@ -59,11 +59,13 @@
     </div>
 
     {{-- Filter input form --}}
-    {{--  <form action="{{ url('/clientes') }}" method="POST">
+    <form id="searchForm" action="{{ url('/clientes') }}" method="POST">
         @csrf
-        <input type="text" name="search" id="search" value="{{$search}}">
-        <button type="submit">Filtrar</button>
-    </form> --}}
+        <div class="d-flex flex-row">
+            <input class="mx-1 input-group-text" type="text" name="search" id="search" value="{{ $search }}">
+            <button class="m-0 btn btn-outline-dark" type="submit">Filtrar</button>
+        </div>
+    </form>
 
     <!-- Main table custom fields-->
     <table id="clientes-tabla" class="table table-striped table-borderer shadow-lg mt-4" style="width:100%">
@@ -154,8 +156,8 @@
                                 <div class="modal-body">
                                     <div class="row">
                                         <figure class="col-4 col-md-2 col-lg-1">
-                                            <img src="{{ asset($user->image) }}" alt="foto_perfil_cliente" width="80rem"
-                                                class="img-fluid">
+                                            <img src="{{ asset($user->image) }}" alt="foto_perfil_cliente"
+                                                width="80rem" class="img-fluid">
                                         </figure>
                                         <div class="mb-3 col-8 col-md-10 col-lg-11 form-group">
                                             <label for="image" class="form-label">Cambiar foto de pefil</label>
@@ -235,6 +237,6 @@
     @if (isset($sort) == false)
         {{ $arrayUsers->links() }}
     @else
-        {{ $arrayUsers->appends(['sort' => $sort, 'order' => $order])->links() }}
+        {{ $arrayUsers->appends(['sort' => $sort, 'order' => $order, 'search' => $search])->links() }}
     @endif
 @endsection
