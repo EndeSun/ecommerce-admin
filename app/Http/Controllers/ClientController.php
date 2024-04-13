@@ -28,7 +28,8 @@ class ClientController extends Controller
         if ($search != '') {
             $arrayUsers = $query->where(function($query) use ($search) {
                     $query->where('name', 'LIKE', '%'.$search.'%')
-                        ->orWhere('email', 'LIKE', '%'.$search.'%');
+                        ->orWhere('email', 'LIKE', '%'.$search.'%')
+                        ->orWhere('phone', 'LIKE', '%'.$search.'%');
                 })
                 ->orderBy($sort, $order)
                 ->paginate($paginate);
@@ -41,11 +42,15 @@ class ClientController extends Controller
     }
 
     public function exportPDF(){
-
-        $user = User::all();
-        $pdf = Pdf::loadView('clientes.report', compact('users', ));
+        $arrayUsers = User::where('rol', '=', 'client')
+            ->with([
+                'orders' => function ($query) {
+                    $query->withSum('orders_product', 'price');
+                }
+            ])->get();
+        /* $arrayUsers = User::all(); */
+        $pdf = Pdf::loadView('clientes.report', compact('arrayUsers'));
         return $pdf->stream('clientes.pdf');
-
     }
 
     public function putEditClient(Request $request, $id)
