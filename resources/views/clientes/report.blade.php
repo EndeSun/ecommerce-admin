@@ -10,8 +10,8 @@
 </head>
 
 <body>
-    <img width="50rem" src="https://images.assetsdelivery.com/compings_v2/lumut/lumut1511/lumut151100229.jpg"
-    alt="logo">
+    {{-- <img width="50rem" src="https://images.assetsdelivery.com/compings_v2/lumut/lumut1511/lumut151100229.jpg"
+    alt="logo"> --}}
     <h1 class="text-center">Clientes</h1>
 
     <!-- Main table custom fields-->
@@ -19,23 +19,23 @@
         <thead>
             <tr>
                 <th scope="col">
-                    <p class="text-center">Nombre</p>
+                    <p class="text-center"><strong>Nombre</strong></p>
                 </th>
 
                 <th scope="col">
-                    <p class="text-center">Correo</p>
+                    <p class="text-center"><strong>Correo</strong></p>
                 </th>
 
                 <th scope="col">
-                    <p class="text-center">Teléfono</p>
+                    <p class="text-center"><strong>Teléfono</strong></p>
                 </th>
 
                 <th scope="col">
-                    <p class="text-center">Dirección</p>
+                    <p class="text-center"><strong>Dirección</strong></p>
                 </th>
 
                 <th scope="col">
-                    <p class="text-center">Importe comprado</p>
+                    <p class="text-center"><strong>Importe comprado</strong></p>
                 </th>
             </tr>
         </thead>

@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\Order;
 use App\Models\Order_product;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ClientsExport;
 
 class ClientController extends Controller
 {
@@ -28,8 +30,7 @@ class ClientController extends Controller
         if ($search != '') {
             $arrayUsers = $query->where(function($query) use ($search) {
                     $query->where('name', 'LIKE', '%'.$search.'%')
-                        ->orWhere('email', 'LIKE', '%'.$search.'%')
-                        ->orWhere('phone', 'LIKE', '%'.$search.'%');
+                        ->orWhere('email', 'LIKE', '%'.$search.'%');
                 })
                 ->orderBy($sort, $order)
                 ->paginate($paginate);
@@ -48,9 +49,13 @@ class ClientController extends Controller
                     $query->withSum('orders_product', 'price');
                 }
             ])->get();
-        /* $arrayUsers = User::all(); */
+
         $pdf = Pdf::loadView('clientes.report', compact('arrayUsers'));
         return $pdf->stream('clientes.pdf');
+    }
+
+    public function exportExcel(){
+        return Excel::download(new ClientsExport, 'Clientes.xlsx');
     }
 
     public function putEditClient(Request $request, $id)

@@ -68,7 +68,7 @@
     </form>
 
     <a href="{{route('clientes.report')}}" class="mt-4 btn btn-danger" type="submit">PDF</a>
-    <a href="{{route('clientes.report')}}" class="mt-4 btn btn-success" type="submit">EXCEL</a>
+    <a href="{{route('clientes.excel')}}" class="mt-4 btn btn-success" type="submit">EXCEL</a>
 
 
 
@@ -99,13 +99,7 @@
                 </th>
 
                 <th>
-                    <div class="d-flex flex-row align-items-center">
-                        <p class="mb-0">Teléfono</p>
-                        <div class="d-flex flex-column mx-3">
-                            <a href="{{ url('clientes?sort=phone&order=asc') }}"><i class="fa-solid fa-caret-up"></i></a>
-                            <a href="{{ url('clientes?sort=phone&order=desc') }}"><i class="fa-solid fa-caret-down"></i></a>
-                        </div>
-                    </div>
+                        <p>Teléfono</p>
                 </th>
 
                 <th>
