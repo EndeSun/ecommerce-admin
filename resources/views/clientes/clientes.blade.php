@@ -62,10 +62,15 @@
     <form id="searchForm" action="{{ url('/clientes') }}" method="POST">
         @csrf
         <div class="d-flex flex-row">
-            <input class="mx-1 input-group-text" type="text" name="search" id="search" value="{{ $search }}">
+            <input class="mx-1 input-group-text" type="text" name="search" placeholder="Introduce para filtrar" id="search" value="{{ $search }}">
             <button class="m-0 btn btn-outline-dark" type="submit">Filtrar</button>
         </div>
     </form>
+
+    <a href="{{route('clientes.report')}}" class="mt-4 btn btn-danger" type="submit">PDF</a>
+    <a href="{{route('clientes.report')}}" class="mt-4 btn btn-success" type="submit">EXCEL</a>
+
+
 
     <!-- Main table custom fields-->
     <table id="clientes-tabla" class="table table-striped table-borderer shadow-lg mt-4" style="width:100%">

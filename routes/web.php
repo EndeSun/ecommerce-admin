@@ -29,6 +29,8 @@ Route::get("/dashboard", [DashboardController::class, 'getDashboard']);
 
 /* Módulo de clientes */
 Route::any("/clientes", [ClientController::class, 'getClients'])->name('arrayUsers'); //✅
+Route::any("/clientes/reportPDF", [ClientController::class, 'exportPDF'])->name('clientes.report'); //✅
+
 Route::put('/clientes/edit/{id}', [ClientController::class, 'putEditClient']);
 Route::post('/clientes/post', [ClientController::class, 'postClient']);
 

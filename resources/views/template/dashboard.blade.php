@@ -8,7 +8,7 @@
         @guest
         @else
             <section class="header-nav">
-                <img class="w-25 h-25" src="https://images.assetsdelivery.com/compings_v2/lumut/lumut1511/lumut151100229.jpg"
+                <img width="50rem" src="https://images.assetsdelivery.com/compings_v2/lumut/lumut1511/lumut151100229.jpg"
                     alt="logo">
                 <h1><em>Ecommerce</em></li>
             </section>
