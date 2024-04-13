@@ -9,12 +9,17 @@ use App\Models\Order_product;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ClientsExport;
+use Alert;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Validator;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class ClientController extends Controller
 {
 
-    public function getClients(Request $request)
-    {
+    //Get method for the client
+    public function getClients(Request $request){
         $paginate = 10;
         $search = $request->filled('search') ? $request->search : '';
         $sort = $request->has('sort') ? $request->sort : 'name';
@@ -41,7 +46,6 @@ class ClientController extends Controller
         
         return view('clientes.clientes', compact('arrayUsers', 'sort', 'order', 'search'));
     }
-
     public function exportPDF(){
         $arrayUsers = User::where('rol', '=', 'client')
             ->with([
@@ -53,38 +57,56 @@ class ClientController extends Controller
         $pdf = Pdf::loadView('clientes.report', compact('arrayUsers'));
         return $pdf->stream('clientes.pdf');
     }
-
     public function exportExcel(){
         return Excel::download(new ClientsExport, 'Clientes.xlsx');
     }
 
-    public function putEditClient(Request $request, $id)
-	{
-		$user = User::findOrFail($id);
+    public function putEditClient(Request $request, $id){
+    $user = User::findOrFail($id);
 
+    // Validar la entrada, incluida la imagen
+    $validator = Validator::make($request->all(), [
+        'image' => 'image|mimes:jpeg,png,jpg|max:4096',
+    ]);
 
-        if($request->file('image') != null){
-            $request->validate([
-                'image' => 'required|image|mimes:jpeg,png,jpg|max:2048', // Ajusta los mime types y el tamaño máximo según tus necesidades
-            ]);
-            if($request->file('image')->isValid()){
-                $file = $request->file('image');
-                $destinationPath = 'images/avatarsUser/';
-                $filename = time().'-'.$file->getClientOriginalName();
-                $request->file('image')->move($destinationPath, $filename);
-                $user->image = $destinationPath . $filename;
-            }
+    if ($validator->fails()) {
+        return redirect('/clientes')
+        ->withErrors($validator)
+        ->withInput();
+    }
+
+    // Si se proporciona una nueva imagen, procesarla
+    if ($request->hasFile('image')) {
+        $file = $request->file('image');
+        $destinationPath = 'images/avatarsUser/';
+        $filename = time() . '-' . $file->getClientOriginalName();
+
+        // Redimensionar y guardar la imagen
+        $resizedImage = Image::make($file)->fit(512, 512);
+
+        $resizedImagePath = $destinationPath . $filename;
+        $resizedImage->save($resizedImagePath);
+
+        // Eliminar la imagen anterior si existe
+        if ($user->image) {
+            File::delete($user->image);
         }
-		$user->name = $request->input('name');
-		$user->surname = $request->input('surname');
-        $user->email = $request->input('emailPost');
-		$user->street = $request->input('street');
-		$user->city = $request->input('city');
-		$user->state = $request->input('state');
-		$user->CP = $request->input('CP');
-		$user->save();
-		return redirect('/clientes');
-	}
+        // Actualizar el atributo de imagen del usuario con la nueva ruta
+        $user->image = $resizedImagePath;
+    }
+
+    // Actualizar otros atributos del usuario
+    $user->name = $request->input('name');
+    $user->surname = $request->input('surname');
+    $user->email = $request->input('emailPost');
+    $user->street = $request->input('street');
+    $user->city = $request->input('city');
+    $user->state = $request->input('state');
+    $user->CP = $request->input('CP');
+    $user->save();
+
+    return redirect('/clientes')->with('success', 'Cambios realizados correctamente');
+    }
 
     public function postClient(Request $request){
         $user = new User;

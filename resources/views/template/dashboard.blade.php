@@ -8,7 +8,7 @@
         @guest
         @else
             <section class="header-nav">
-                <img width="50rem" src="https://images.assetsdelivery.com/compings_v2/lumut/lumut1511/lumut151100229.jpg"
+                <img width="50rem" class="rounded-circle" src="https://images.assetsdelivery.com/compings_v2/lumut/lumut1511/lumut151100229.jpg"
                     alt="logo">
                 <h1><em>Ecommerce</em></li>
             </section>
@@ -113,7 +113,6 @@
     </nav>
 
 
-
     <!-- Sección de header -->
     @guest
         <header id="head-guest">
@@ -136,11 +135,11 @@
             <!-- Sección del icóno y el botón de expandir -->
             <section id="section-perfiles" class="section-perfiles dropdown">
                 @guest
-                    <img class="perfil dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"
+                    <img class="rounded-circle dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" width=40rem
                         src="https://static.vecteezy.com/system/resources/thumbnails/002/318/271/small/user-profile-icon-free-vector.jpg"
                         alt="perfil">
                 @else
-                    <img class="perfil dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"
+                    <img class="rounded-circle perfil dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" width=45rem
                         src="{{ Auth::user()->image }}" alt="perfil">
                 @endguest
 

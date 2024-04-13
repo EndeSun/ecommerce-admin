@@ -1,5 +1,4 @@
 import "./bootstrap";
-import 'laravel-datatables-vite';
 
 
 let myDocument = document.documentElement;

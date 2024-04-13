@@ -38,7 +38,6 @@ header {
     section {
         #logo-img {
             width: 3rem;
-            border-radius: $full-round;
         }
     }
     /* Estilo del icono del menú */
@@ -95,13 +94,6 @@ i {
     display: flex;
     gap: 1em;
     margin: 0px 5px 0px 0px;
-    /* ---------------------------- */
-    /* Imagen de perfil */
-    .perfil {
-        border-radius: $full-round;
-        width: 2rem;
-        height: 2rem;
-    }
 }
 
 // Navbar
@@ -145,9 +137,6 @@ i {
             line-height: 1.75rem;
             font-weight: 700;
             color: white;
-        }
-        img {
-            border-radius: $full-round;
         }
     }
 
@@ -225,10 +214,6 @@ table {
             background-color: rgb(224, 245, 249);
             transition: background-color 0.5s;
         }
-    }
-
-    img {
-        border-radius: $full-round;
     }
 }
 

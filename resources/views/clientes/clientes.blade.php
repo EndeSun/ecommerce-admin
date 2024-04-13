@@ -62,13 +62,14 @@
     <form id="searchForm" action="{{ url('/clientes') }}" method="POST">
         @csrf
         <div class="d-flex flex-row">
-            <input class="mx-1 input-group-text" type="text" name="search" placeholder="Introduce para filtrar" id="search" value="{{ $search }}">
+            <input class="mx-1 input-group-text" type="text" name="search" placeholder="Introduce para filtrar"
+                id="search" value="{{ $search }}">
             <button class="m-0 btn btn-outline-dark" type="submit">Filtrar</button>
         </div>
     </form>
 
-    <a href="{{route('clientes.report')}}" class="mt-4 btn btn-danger" type="submit">PDF</a>
-    <a href="{{route('clientes.excel')}}" class="mt-4 btn btn-success" type="submit">EXCEL</a>
+    <a href="{{ route('clientes.report') }}" class="mt-4 btn btn-danger" type="submit">PDF</a>
+    <a href="{{ route('clientes.excel') }}" class="mt-4 btn btn-success" type="submit">EXCEL</a>
 
 
 
@@ -99,7 +100,7 @@
                 </th>
 
                 <th>
-                        <p>Teléfono</p>
+                    <p>Teléfono</p>
                 </th>
 
                 <th>
@@ -119,7 +120,8 @@
         <tbody>
             @foreach ($arrayUsers as $user)
                 <tr>
-                    <th><img src="{{ asset($user->image) }}" alt="Imagen perfil" width="35rem" class="img-fluid"></th>
+                    <th><img src="{{ asset($user->image) }}" alt="Imagen perfil" width="50rem"
+                            class="img-fluid rounded-circle"></th>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->phone }}</td>
@@ -151,19 +153,29 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
-                                <!-- Aquí va el formulario de edición -->
+
+                                <!-- Update FORM -->
                                 <div class="modal-body">
+
+                                    {{-- Image form --}}
                                     <div class="row">
                                         <figure class="col-4 col-md-2 col-lg-1">
                                             <img src="{{ asset($user->image) }}" alt="foto_perfil_cliente"
                                                 width="80rem" class="img-fluid">
                                         </figure>
+
+                                        {{-- <figure class="col-4 col-md-2 col-lg-1">
+                                            <img id="imagenSeleccionada" alt="Imagen seleccionada" style="max-height: 300px;">
+                                        </figure> --}}
+
                                         <div class="mb-3 col-8 col-md-10 col-lg-11 form-group">
                                             <label for="image" class="form-label">Cambiar foto de pefil</label>
-                                            <input class="form-control" type="file" name="image"
+                                            <input class="form-control" type="file" name="image" id="image"
                                                 accept="image/png, image/jpeg, image/jpg">
+
                                             <!-- Especificación del tipo de codificación -->
                                             @error('image')
+                                                @include('alert::alert')
                                                 <small class="text-danger">{{ $message }}</small>
                                             @enderror
                                         </div>
@@ -220,8 +232,9 @@
                                     </div>
                                 </div>
 
+                                {{-- Botones del formulario de edición --}}
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
+                                    <button type="button" class="btn bt n-secondary"
                                         data-bs-dismiss="modal">Cancelar</button>
                                     <button type="submit" class="btn btn-success">Actualizar</button>
                                 </div>
