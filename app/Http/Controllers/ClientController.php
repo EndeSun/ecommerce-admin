@@ -88,11 +88,20 @@ class ClientController extends Controller
 
     public function postClient(Request $request){
         $user = new User;
-        $user->name = $request->input('name');
-		$user->surname = $request->input('surname');
-        $user->email = $request->input('email');
-        $user->password = $request->input('password');
+        $user->name = $request->input('name_add');
+		$user->surname = $request->input('surname_add');
+        $user->email = $request->input('email_add');
+        $user->password = $request->input('password_add');
         $user->rol = 'client';
+        $user->phone = $request->input('phone_add');
+        $user->state = $request->input('state_add');
+        $user->city = $request->input('city_add');
+        $user->street = $request->input('street_add');
+        $user->CP = $request->input('CP_add');
+
+        $currentDate = date('Y-m-d');
+        $user->registration_date = $currentDate;
+        
         $user->save();
 		return redirect('/clientes');
     }

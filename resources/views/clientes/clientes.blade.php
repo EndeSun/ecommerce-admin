@@ -16,7 +16,9 @@
     <div class="modal fade" id="add_client" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-scrollable">
             <div class="modal-content">
+                {{-- ADD NEW CLIENT FORM --}}
                 <form action="{{ url('clientes/post') }}" method="POST" enctype="multipart/form-data">
+                    
                     @csrf
                     <div class="modal-header">
                         <h2 class="modal-title fs-5" id="exampleModalLabel">Añadir nuevo cliente</h2>
@@ -27,26 +29,58 @@
                     <div class="modal-body">
                         <div class="row">
                             <div class="form-group col-6">
-                                <label for="name">Nombre</label>
-                                <input type="text" name="name" id="name" class="form-control">
+                                <label for="name_add">Nombre</label>
+                                <input type="text" name="name_add" id="name_add" class="form-control">
                             </div>
 
                             <div class="form-group col-6">
-                                <label for="surname">Apellidos</label>
-                                <input type="text" name="surname" id="surname" class="form-control">
+                                <label for="surname_add">Apellidos</label>
+                                <input type="text" name="surname_add" id="surname_add" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password_add">Contraseña</label>
+                            <input type="password" name="password_add" id="password_add" class="form-control">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="email_add">Correo</label>
+                            <input type="email" name="email_add" id="email_add" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone_add">Teléfono</label>
+                            <input type="number" name="phone_add" id="phone_add" class="form-control">
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-7">
+                                <label for="state_add">Provincia</label>
+                                <input type="text" name="state" id="state_add" class="form-control">
+                            </div>
+
+                            <div class="form-group col-5">
+                                <label for="city_add">Ciudad</label>
+                                <input type="text" name="city_add" id="city_add" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-10">
+                                <label for="street_add">Calle</label>
+                                <input type="text" name="street_add" id="street_add" class="form-control">
+                            </div>
+
+                            <div class="form-group col-2">
+                                <label for="CP_add">CP</label>
+                                <input type="text" name="CP_add" id="CP_add" class="form-control">
                             </div>
                         </div>
 
 
-                        <div class="form-group">
-                            <label for="email">Correo</label>
-                            <input type="email" name="email" id="email" class="form-control">
-                        </div>
 
-                        <div class="form-group">
-                            <label for="password">Contraseña</label>
-                            <input type="password" name="password" id="password" class="form-control">
-                        </div>
                     </div>
 
                     <div class="modal-footer">
