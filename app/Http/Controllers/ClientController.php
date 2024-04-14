@@ -61,54 +61,6 @@ class ClientController extends Controller
         return Excel::download(new ClientsExport, 'Clientes.xlsx');
     }
 
-    public function putEditClient(Request $request, $id){
-    $user = User::findOrFail($id);
-
-    // Validar la entrada, incluida la imagen
-    $validator = Validator::make($request->all(), [
-        'image' => 'image|mimes:jpeg,png,jpg|max:4096',
-    ]);
-
-    if ($validator->fails()) {
-        return redirect('/clientes')
-        ->withErrors($validator)
-        ->withInput();
-    }
-
-    // Si se proporciona una nueva imagen, procesarla
-    if ($request->hasFile('image')) {
-        $file = $request->file('image');
-        $destinationPath = 'images/avatarsUser/';
-        $filename = time() . '-' . $file->getClientOriginalName();
-
-        // Redimensionar y guardar la imagen
-        $resizedImage = Image::make($file)->fit(512, 512);
-
-        $resizedImagePath = $destinationPath . $filename;
-        $resizedImage->save($resizedImagePath);
-
-        // Eliminar la imagen anterior si existe
-        if ($user->image) {
-            File::delete($user->image);
-        }
-        // Actualizar el atributo de imagen del usuario con la nueva ruta
-        $user->image = $resizedImagePath;
-    }
-
-    // Actualizar otros atributos del usuario
-    $user->name = $request->input('name_update');
-    $user->surname = $request->input('surname_update');
-    $user->email = $request->input('emailPost_update');
-    $user->phone = $request->input('phone_update');
-    $user->street = $request->input('street_update');
-    $user->city = $request->input('city_update');
-    $user->state = $request->input('state_update');
-    $user->CP = $request->input('CP_update');
-    $user->save();
-
-    return redirect('/clientes')->with('success', 'Cambios realizados correctamente');
-    }
-
     public function postClient(Request $request){
         $user = new User;
         $user->name = $request->input('name_add');
@@ -128,4 +80,54 @@ class ClientController extends Controller
         $user->save();
 		return redirect('/clientes');
     }
+
+    public function putEditClient(Request $request, $id){
+        $user = User::findOrFail($id);
+
+        // Validar la entrada, incluida la imagen
+        $validator = Validator::make($request->all(), [
+            'image' => 'image|mimes:jpeg,png,jpg|max:4096',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/clientes')
+            ->withErrors($validator)
+            ->withInput();
+        }
+
+        // Si se proporciona una nueva imagen, procesarla
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $destinationPath = 'images/avatarsUser/';
+            $filename = time() . '-' . $file->getClientOriginalName();
+
+            // Redimensionar y guardar la imagen
+            $resizedImage = Image::make($file)->fit(512, 512);
+
+            $resizedImagePath = $destinationPath . $filename;
+            $resizedImage->save($resizedImagePath);
+
+            // Eliminar la imagen anterior si existe
+            if ($user->image) {
+                File::delete($user->image);
+            }
+            // Actualizar el atributo de imagen del usuario con la nueva ruta
+            $user->image = $resizedImagePath;
+        }
+
+        // Actualizar otros atributos del usuario
+        $user->name = $request->input('name_update');
+        $user->surname = $request->input('surname_update');
+        $user->email = $request->input('emailPost_update');
+        $user->phone = $request->input('phone_update');
+        $user->street = $request->input('street_update');
+        $user->city = $request->input('city_update');
+        $user->state = $request->input('state_update');
+        $user->CP = $request->input('CP_update');
+        $user->save();
+
+        return redirect('/clientes')->with('success', 'Cambios realizados correctamente');
+    }
+
+
 }
