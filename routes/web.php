@@ -21,16 +21,16 @@ use App\Http\Controllers\ProductosController;
 |
 */
 
-Route::get('/', [HomeController::class, 'getHome']);//✅
+Route::get('/', [HomeController::class, 'getHome']);
 
 Route::group(['middleware' => 'auth'], function() {
 /* Dashboard principal */
 Route::get("/dashboard", [DashboardController::class, 'getDashboard']);
 
 /* Módulo de clientes */
-Route::any("/clientes", [ClientController::class, 'getClients'])->name('arrayUsers'); //✅
-Route::any("/clientes/reportPDF", [ClientController::class, 'exportPDF'])->name('clientes.report'); //✅
-Route::any("/clientes/reportExcel", [ClientController::class, 'exportExcel'])->name('clientes.excel'); //✅
+Route::any("/clientes", [ClientController::class, 'getClients'])->name('arrayUsers'); 
+Route::any("/clientes/reportPDF", [ClientController::class, 'exportPDF'])->name('clientes.report'); 
+Route::any("/clientes/reportExcel", [ClientController::class, 'exportExcel'])->name('clientes.excel'); 
 
 
 Route::put('/clientes/edit/{id}', [ClientController::class, 'putEditClient']);
@@ -38,7 +38,11 @@ Route::post('/clientes/post', [ClientController::class, 'postClient']);
 
 
 /* Módulo de productos */
-Route::get("/categorias", [ProductosController::class, 'getCategorias']); //✅
+Route::any("/categorias", [ProductosController::class, 'getCategorias'])->name('arrayCategorias'); //📍
+Route::any("/categorias/reportPDF", [ProductosController::class, 'exportPDF'])->name('productos.categorias.report'); //📍
+Route::any("/categorias/reportExcel", [ProductosController::class, 'exportExcel'])->name('categorias.excel'); //📍
+
+
 Route::get("/productos", [ProductosController::class, 'getProductos']); //✅
 Route::get("/productos/informes", [ProductosController::class, 'getProductosInformes']);
 

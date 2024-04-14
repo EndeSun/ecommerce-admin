@@ -27,25 +27,25 @@ class ClientController extends Controller
     
         $query = User::where('rol', '=', 'client')
             ->with([
-                'orders' => function ($query) {
-                    $query->withSum('orders_product', 'price');
+                'orders' => function ($queryBuilder) {
+                    $queryBuilder->withSum('orders_product', 'price');
                 }
             ]);
     
+        $arrayUsers = $query->orderBy($sort, $order);
+    
         if ($search != '') {
-            $arrayUsers = $query->where(function($query) use ($search) {
-                    $query->where('name', 'LIKE', '%'.$search.'%')
-                        ->orWhere('email', 'LIKE', '%'.$search.'%');
-                })
-                ->orderBy($sort, $order)
-                ->paginate($paginate);
-        } else {
-            $arrayUsers = $query->orderBy($sort, $order)
-                ->paginate($paginate);
+            $arrayUsers->where(function($queryBuilder) use ($search) {
+                $queryBuilder->where('name', 'LIKE', '%'.$search.'%')
+                    ->orWhere('email', 'LIKE', '%'.$search.'%');
+            });
         }
-        
+    
+        $arrayUsers = $arrayUsers->paginate($paginate);
+    
         return view('clientes.clientes', compact('arrayUsers', 'sort', 'order', 'search'));
     }
+
     public function exportPDF(){
         $arrayUsers = User::where('rol', '=', 'client')
             ->with([

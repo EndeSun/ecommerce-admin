@@ -102,17 +102,17 @@
         </div>
     </form>
 
+    {{-- Export buttons --}}
     <a href="{{ route('clientes.report') }}" class="mt-4 btn btn-danger" type="submit">PDF</a>
     <a href="{{ route('clientes.excel') }}" class="mt-4 btn btn-success" type="submit">EXCEL</a>
 
 
 
-    <!-- Main table custom fields-->
+    <!-- Main table -->
     <table id="clientes-tabla" class="table table-striped table-borderer shadow-lg mt-4" style="width:100%">
         <thead class="bg-info">
             <tr>
                 <th></th>
-
                 <th>
                     <div class="d-flex flex-row align-items-center">
                         <p class="mb-0">Nombre</p>
