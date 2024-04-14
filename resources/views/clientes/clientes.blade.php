@@ -181,50 +181,42 @@
                                         </div>
                                     </div>
 
-
-
                                     <div class="row">
                                         <div class="form-group col-6">
                                             <label for="name">Nombre</label>
                                             <input type="text" value="{{ $user->name }}" name="name"
                                                 id="name" class="form-control">
                                         </div>
-
                                         <div class="form-group col-6">
                                             <label for="surname">Apellidos</label>
                                             <input type="text" value="{{ $user->surname }}" name="surname"
                                                 id="surname" class="form-control">
                                         </div>
                                     </div>
-
-
                                     <div class="form-group">
                                         <label for="emailPost">Correo</label>
                                         <input type="email" value="{{ $user->email }}" name="emailPost"
                                             id="emailPost" class="form-control">
                                     </div>
-
                                     <div class="row">
-                                        <div class="form-group col-6">
-                                            <label for="street" class="form-label">Calle</label>
-                                            <input type="text" value="{{ $user->street }}" name="street"
-                                                class="form-control" id="street">
+                                        <div class="form-group col-8">
+                                            <label for="state" class="form-label">Provincia</label>
+                                            <input type="text" value="{{ $user->state }}" name="state"
+                                                class="form-control" id="state">
                                         </div>
-                                        <div class="form-group col-6">
+                                        <div class="form-group col-4">
                                             <label for="city" class="form-label">Ciudad</label>
                                             <input type="text" value="{{ $user->city }}" name="city"
                                                 class="form-control" id="city">
                                         </div>
                                     </div>
-
                                     <div class="row">
-                                        <div class="form-group col-6">
-                                            <label for="state" class="form-label">Provincia</label>
-                                            <input type="text" value="{{ $user->state }}" name="state"
-                                                class="form-control" id="state">
+                                        <div class="form-group col-10">
+                                            <label for="street" class="form-label">Calle</label>
+                                            <input type="text" value="{{ $user->street }}" name="street"
+                                                class="form-control" id="street">
                                         </div>
-
-                                        <div class="form-group col-6">
+                                        <div class="form-group col-2">
                                             <label for="CP" class="form-label">CP</label>
                                             <input type="text" value="{{ $user->CP }}" name="CP"
                                                 class="form-control" id="CP">
@@ -234,10 +226,10 @@
 
                                 {{-- Botones del formulario de edición --}}
                                 <div class="modal-footer">
-                                    <button type="button" class="btn bt n-secondary"
-                                        data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-secondary"data-bs-dismiss="modal">Cancelar</button>
                                     <button type="submit" class="btn btn-success">Actualizar</button>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
