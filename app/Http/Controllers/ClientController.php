@@ -96,13 +96,14 @@ class ClientController extends Controller
     }
 
     // Actualizar otros atributos del usuario
-    $user->name = $request->input('name');
-    $user->surname = $request->input('surname');
-    $user->email = $request->input('emailPost');
-    $user->street = $request->input('street');
-    $user->city = $request->input('city');
-    $user->state = $request->input('state');
-    $user->CP = $request->input('CP');
+    $user->name = $request->input('name_update');
+    $user->surname = $request->input('surname_update');
+    $user->email = $request->input('emailPost_update');
+    $user->phone = $request->input('phone_update');
+    $user->street = $request->input('street_update');
+    $user->city = $request->input('city_update');
+    $user->state = $request->input('state_update');
+    $user->CP = $request->input('CP_update');
     $user->save();
 
     return redirect('/clientes')->with('success', 'Cambios realizados correctamente');

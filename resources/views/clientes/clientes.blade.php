@@ -217,43 +217,48 @@
 
                                     <div class="row">
                                         <div class="form-group col-6">
-                                            <label for="name">Nombre</label>
-                                            <input type="text" value="{{ $user->name }}" name="name"
-                                                id="name" class="form-control">
+                                            <label for="name_update">Nombre</label>
+                                            <input type="text" value="{{ $user->name }}" name="name_update" 
+                                            id="name_update" class="form-control">
                                         </div>
                                         <div class="form-group col-6">
-                                            <label for="surname">Apellidos</label>
-                                            <input type="text" value="{{ $user->surname }}" name="surname"
-                                                id="surname" class="form-control">
+                                            <label for="surname_update">Apellidos</label>
+                                            <input type="text" value="{{ $user->surname }}" name="surname_update"
+                                                id="surname_update" class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="emailPost">Correo</label>
-                                        <input type="email" value="{{ $user->email }}" name="emailPost"
-                                            id="emailPost" class="form-control">
+                                        <label for="emailPost_update">Correo</label>
+                                        <input type="email" value="{{ $user->email }}" name="emailPost_update"
+                                            id="emailPost_update" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="phone_update">Teléfono</label>
+                                        <input type="number" value="{{ $user->phone }}" name="phone_update"
+                                            id="phone_update" class="form-control">
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-8">
-                                            <label for="state" class="form-label">Provincia</label>
-                                            <input type="text" value="{{ $user->state }}" name="state"
-                                                class="form-control" id="state">
+                                            <label for="state_update" class="form-label">Provincia</label>
+                                            <input type="text" value="{{ $user->state }}" name="state_update"
+                                                class="form-control" id="state_update">
                                         </div>
                                         <div class="form-group col-4">
-                                            <label for="city" class="form-label">Ciudad</label>
-                                            <input type="text" value="{{ $user->city }}" name="city"
-                                                class="form-control" id="city">
+                                            <label for="city_update" class="form-label">Ciudad</label>
+                                            <input type="text" value="{{ $user->city }}" name="city_update"
+                                                class="form-control" id="city_update">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-10">
-                                            <label for="street" class="form-label">Calle</label>
-                                            <input type="text" value="{{ $user->street }}" name="street"
-                                                class="form-control" id="street">
+                                            <label for="street_update" class="form-label">Calle</label>
+                                            <input type="text" value="{{ $user->street }}" name="street_update"
+                                                class="form-control" id="street_update">
                                         </div>
                                         <div class="form-group col-2">
-                                            <label for="CP" class="form-label">CP</label>
-                                            <input type="text" value="{{ $user->CP }}" name="CP"
-                                                class="form-control" id="CP">
+                                            <label for="CP_update" class="form-label">CP</label>
+                                            <input type="text" value="{{ $user->CP }}" name="CP_update"
+                                                class="form-control" id="CP_update">
                                         </div>
                                     </div>
                                 </div>
@@ -263,7 +268,7 @@
                                     <button type="button" class="btn btn-secondary"data-bs-dismiss="modal">Cancelar</button>
                                     <button type="submit" class="btn btn-success">Actualizar</button>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
