@@ -93,8 +93,10 @@
                     </td>
 
                     {{-- Color de fondo de la imagen que se presentará en la aplicación móvil --}}
-                    <td style="background-color: {{ $categoria->fondo }};" class="text-center align-middle">
-                        <p class="mb-0">{{$categoria->fondo}}</p>
+                    <td  class="text-center align-middle">
+                        <div style="background-color: {{ $categoria->fondo }};" class="rounded-4 p-3">
+                            <p class="mb-0">{{$categoria->fondo}}</p>
+                        </div>
                     </td>
 
                     <td class="align-middle text-center">
