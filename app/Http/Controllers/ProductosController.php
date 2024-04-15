@@ -48,12 +48,12 @@ class ProductosController extends Controller
         return view('productos/categorias/categorias', compact('arrayCategorias', 'sort', 'order', 'search'));
     }
 
-    public function exportPDF(){
+    public function exportPDFCategorias(){
         $arrayCategorias = Category::all();
         $pdf = Pdf::loadView('productos.categorias.report', compact('arrayCategorias'));
         return $pdf->stream('categorias.pdf', compact('arrayCategorias'));
     }
-    public function exportExcel(){
+    public function exportExcelCategorias(){
         return Excel::download(new CategoriasExport, 'Categorias.xlsx');
     }
     

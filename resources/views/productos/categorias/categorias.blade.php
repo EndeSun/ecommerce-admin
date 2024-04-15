@@ -50,7 +50,7 @@
 
     {{-- Main Table --}}
     <table id="categoria-tabla" class="table table-striped table-borderer shadow-lg mt-4" style="width:100%">
-       
+
         <thead>
             <tr>
                 <th></th>
@@ -73,7 +73,8 @@
                     <div class="d-flex flex-row align-items-center text-center justify-content-center ">
                         <p class="mb-0">Categoría padre</p>
                         <div class="d-flex flex-column mx-3">
-                            <a href="{{ url('categorias?sort=parent_name&order=asc') }}"><i class="fa-solid fa-caret-up"></i></a>
+                            <a href="{{ url('categorias?sort=parent_name&order=asc') }}"><i
+                                    class="fa-solid fa-caret-up"></i></a>
                             <a href="{{ url('categorias?sort=parent_name&order=desc') }}"><i
                                     class="fa-solid fa-caret-down"></i></a>
                         </div>
@@ -93,9 +94,9 @@
                     </td>
 
                     {{-- Color de fondo de la imagen que se presentará en la aplicación móvil --}}
-                    <td  class="text-center align-middle">
+                    <td class="text-center align-middle">
                         <div style="background-color: {{ $categoria->fondo }};" class="rounded-4 p-3">
-                            <p class="mb-0">{{$categoria->fondo}}</p>
+                            <p class="mb-0">{{ $categoria->fondo }}</p>
                         </div>
                     </td>
 
@@ -116,11 +117,13 @@
                     </td>
                 </tr>
 
+                {{-- Edit form for each category --}}
                 <form action="{{ url('categoria/edit', ['id' => $categoria->id]) }}" method="POST"
                     enctype="multipart/form-data"> <!-- Tipo de codificación para enviar ficheros -->
                     @method('PUT')
                     @csrf
-                    <div class="modal fade modal-xl" id="modal-{{ $categoria->id }}" tabindex="-1"
+
+                    <div class="modal fade modal-xl modal-put" id="modal-{{ $categoria->id }}" tabindex="-1"
                         aria-labelledby="modalLabel-{{ $categoria->id }}" aria-hidden="true" modal-dialog-scrollable
                         modal-dialog-centered>
                         <div class="modal-dialog">
@@ -131,30 +134,82 @@
                                         aria-label="Close"></button>
                                 </div>
 
-                                <!-- Aquí va el formulario de edición -->
+                                <!-- modal form body -->
                                 <div class="modal-body">
 
                                     <div class="row">
                                         <figure class="col-4 col-md-2 col-lg-1">
-                                            <img src="{{ asset($categoria->imagen) }}" alt="foto_categoria" width="80rem"
-                                                class="img-fluid">
+                                            <img src="{{ asset($categoria->imagen) }}" alt="foto_categoria"
+                                                width="80rem" class="img-fluid">
                                         </figure>
-                                        <div class="mb-3 col-8 col-md-10 col-lg-11 form-group">
-                                            <label for="image" class="form-label">Cambiar foto de la categoría</label>
-                                            <input class="form-control" type="file" name="image"
+                                        <div class=" mb-3 col-8 col-md-10 col-lg-11 form-group">
+                                            <label for="image_category_put" class="form-label">Cambiar foto de la categoría</label>
+                                            <input class="form-control" type="file" name="image" id="image_category_put"
                                                 accept="image/png, image/jpeg, image/jpg">
                                             <!-- Especificación del tipo de codificación -->
                                             @error('image')
                                                 <small class="text-danger">{{ $message }}</small>
                                             @enderror
                                         </div>
+
+                                        {{-- Color picker field --}}
+                                        <div class="row my-4">
+                                            <div class="form-group p-0 col-4 col-md-2 col-lg-1 text-center d-flex justify-content-center ">
+                                                <input class="form-control border-2 h-100 w-100 colorPicker" type="color" value="{{$categoria->fondo}}" id="colorPicker" >
+                                            </div>
+
+                                            <div class="form-group col-8 col-md-10 col-lg-11 align-items-center">
+                                                <label for="colorPickerText">Seleccione el color de fondo</label>
+                                                <input class="form-control colorPickerText" type="text" value="{{$categoria->fondo}}" name="colorPickerText" id="colorPickerText" readonly>
+                                            </div>
+                                        </div>
+
+                                        {{-- Next fields --}}
+                                        <div class="row">
+                                            <div class="form-group col-6">
+                                                <label for="name_update">Nombre</label>
+                                                <input type="text" value="" name="name_update" 
+                                                id="name_update" class="form-control">
+                                            </div>
+                                            <div class="form-group col-6">
+                                                <label for="surname_update">Categoría padre</label>
+                                                <input type="text" value="" name="surname_update"
+                                                    id="surname_update" class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-6">
+                                                <label for="name_update">Subcategorías</label>
+                                                <input type="text" value="" name="name_update" 
+                                                id="name_update" class="form-control">
+                                            </div>
+                                            <div class="form-group col-6">
+                                                <label for="surname_update">Productos</label>
+                                                <input type="text" value="" name="surname_update"
+                                                    id="surname_update" class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-6">
+                                                <label for="name_update">Añadir subcategorías</label>
+                                                <input type="text" value="" name="name_update" 
+                                                id="name_update" class="form-control">
+                                            </div>
+                                            <div class="form-group col-6">
+                                                <label for="surname_update">Añadir productos</label>
+                                                <input type="text" value="" name="surname_update"
+                                                    id="surname_update" class="form-control">
+                                            </div>
+                                        </div>
                                     </div>
 
                                 </div>
 
+                                {{-- Action buttons --}}
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="button"class="btn btn-secondary btn-cancel" data-bs-dismiss="modal">Cancelar</button>
                                     <button type="submit" class="btn btn-success">Actualizar</button>
                                 </div>
                             </div>

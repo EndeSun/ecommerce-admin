@@ -231,6 +231,7 @@
                                                 id="surname_update" class="form-control">
                                         </div>
                                     </div>
+                                    
                                     <div class="form-group">
                                         <label for="emailPost_update">Correo</label>
                                         <input type="email" value="{{ $user->email }}" name="emailPost_update"

@@ -74,8 +74,6 @@ main {
     }
 }
 
-
-
 #main-content {
     /* Transición del margen */
     transition: margin-left 0.5s;
@@ -198,7 +196,7 @@ table {
     th,
     span {
         text-align: left !important;
-        a{
+        a {
             list-style: none;
             color: black;
         }
@@ -215,29 +213,31 @@ table {
             transition: background-color 0.5s;
         }
     }
+
+    
 }
 
 /* Barra de paginación*/
-nav.flex.justify-between.items-center{
-    div{
-        span{
+nav.flex.justify-between.items-center {
+    div {
+        span {
             border-radius: $border-radius;
         }
-        a{
-            color: black ;
+        a {
+            color: black;
             border-radius: $border-radius;
         }
         margin-bottom: 1rem;
     }
-    
-    svg{
+
+    svg {
         width: 2rem;
     }
 }
 
 //Filter Input
-form{
-    input{
+form {
+    input {
         border-radius: $border-radius;
     }
 }

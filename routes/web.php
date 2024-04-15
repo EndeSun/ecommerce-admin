@@ -39,8 +39,8 @@ Route::post('/clientes/post', [ClientController::class, 'postClient']);
 
 /* Módulo de productos */
 Route::any("/categorias", [ProductosController::class, 'getCategorias'])->name('arrayCategorias'); //📍
-Route::any("/categorias/reportPDF", [ProductosController::class, 'exportPDF'])->name('productos.categorias.report'); //📍
-Route::any("/categorias/reportExcel", [ProductosController::class, 'exportExcel'])->name('categorias.excel'); //📍
+Route::any("/categorias/reportPDF", [ProductosController::class, 'exportPDFCategorias'])->name('productos.categorias.report'); //📍
+Route::any("/categorias/reportExcel", [ProductosController::class, 'exportExcelCategorias'])->name('categorias.excel'); //📍
 
 
 Route::get("/productos", [ProductosController::class, 'getProductos']); //✅
