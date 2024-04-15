@@ -110,11 +110,12 @@
 
     <!-- Main table -->
     <table id="clientes-tabla" class="table table-striped table-borderer shadow-lg mt-4" style="width:100%">
+        
         <thead class="bg-info">
             <tr>
                 <th></th>
                 <th>
-                    <div class="d-flex flex-row align-items-center">
+                    <div class="d-flex flex-row align-items-center text-center justify-content-center">
                         <p class="mb-0">Nombre</p>
                         <div class="d-flex flex-column mx-3">
                             <a href="{{ url('clientes?sort=name&order=asc') }}"><i class="fa-solid fa-caret-up"></i></a>
@@ -124,7 +125,7 @@
                 </th>
 
                 <th>
-                    <div class="d-flex flex-row align-items-center">
+                    <div class="d-flex flex-row align-items-center text-center justify-content-center">
                         <p class="mb-0">Correo</p>
                         <div class="d-flex flex-column mx-3">
                             <a href="{{ url('clientes?sort=email&order=asc') }}"><i class="fa-solid fa-caret-up"></i></a>
@@ -133,19 +134,19 @@
                     </div>
                 </th>
 
-                <th>
+                <th class="text-center">
                     <p>Teléfono</p>
                 </th>
 
-                <th>
+                <th class="text-center">
                     <p>Dirección</p>
                 </th>
 
-                <th>
+                <th class="text-center">
                     <p>Importe comprado</p>
                 </th>
 
-                <th>
+                <th class="text-center">
                     <p>Editar</p>
                 </th>
             </tr>
@@ -154,16 +155,19 @@
         <tbody>
             @foreach ($arrayUsers as $user)
                 <tr>
-                    <th><img src="{{ asset($user->image) }}" alt="Imagen perfil" width="50rem"
-                            class="img-fluid rounded-circle"></th>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->email }}</td>
-                    <td>{{ $user->phone }}</td>
-                    <td>{{ $user->street }} {{ $user->city }} {{ $user->state }} {{ $user->CP }}</td>
-                    <td>
+                    <th class="text-center">
+                        <img src="{{ asset($user->image) }}" alt="Imagen perfil" width="50rem"
+                            class="img-fluid rounded-circle">
+                    </th>
+                    <td class="text-center">{{ $user->name }}</td>
+                    <td class="text-center">{{ $user->email }}</td>
+                    <td class="text-center">{{ $user->phone }}</td>
+                    <td class="text-center">{{ $user->street }} {{ $user->city }} {{ $user->state }} {{ $user->CP }}</td>
+                    <td class="text-center">
                         {{ $user->orders->sum('orders_product_sum_price') }} €
                     </td>
-                    <td>
+                    
+                    <td class="text-center">
                         <button data-bs-toggle="modal" data-bs-target="#modal-{{ $user->id }}">
                             <i class="fa-solid fa-pencil">
                             </i>

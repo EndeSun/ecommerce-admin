@@ -11,6 +11,8 @@ use App\Exports\CategoriasExport;
 
 class ProductosController extends Controller
 {
+
+    
     public function getCategorias(Request $request){
         $paginate = 10;
         $search = $request->filled('search') ? $request->search : '';

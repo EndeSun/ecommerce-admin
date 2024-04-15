@@ -16,7 +16,6 @@
         <div class="modal-dialog modal-xl modal-dialog-scrollable">
             <div class="modal-content">
                 <!-- Add new Category secction  -->
-                <!-- TO_DO: añadir el método de category/post y en web.route.php -->
                 <form action="{{ url('category/post') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-header">
@@ -51,14 +50,16 @@
 
     {{-- Main Table --}}
     <table id="categoria-tabla" class="table table-striped table-borderer shadow-lg mt-4" style="width:100%">
+       
         <thead>
             <tr>
                 <th></th>
-                <th>
+                <th class="text-center">
                     <p>Color de fondo</p>
                 </th>
+
                 <th>
-                    <div class="d-flex flex-row align-items-center">
+                    <div class="d-flex flex-row align-items-center text-center justify-content-center ">
                         <p class="mb-0">Nombre</p>
                         <div class="d-flex flex-column mx-3">
                             <a href="{{ url('categorias?sort=name&order=asc') }}"><i class="fa-solid fa-caret-up"></i></a>
@@ -67,8 +68,9 @@
                         </div>
                     </div>
                 </th>
+
                 <th>
-                    <div class="d-flex flex-row align-items-center">
+                    <div class="d-flex flex-row align-items-center text-center justify-content-center ">
                         <p class="mb-0">Categoría padre</p>
                         <div class="d-flex flex-column mx-3">
                             <a href="{{ url('categorias?sort=parent_name&order=asc') }}"><i class="fa-solid fa-caret-up"></i></a>
@@ -86,19 +88,23 @@
         <tbody>
             @foreach ($arrayCategorias as $categoria)
                 <tr>
-                    <td scope="row">
+                    <td scope="row" class="align-middle text-center">
                         <img src="{{ asset($categoria->imagen) }}" alt="categoría" width="35rem" class="img-fluid">
                     </td>
 
                     {{-- Color de fondo de la imagen que se presentará en la aplicación móvil --}}
-                    <td style="background-color: {{ $categoria->fondo }};"></td>
+                    <td style="background-color: {{ $categoria->fondo }};" class="text-center align-middle">
+                        <p class="mb-0">{{$categoria->fondo}}</p>
+                    </td>
 
-                    <td>{{ $categoria->name }}</td>
+                    <td class="align-middle text-center">
+                        {{ $categoria->name }}
+                    </td>
 
                     @if ($categoria->category_id == null)
-                        <td>CATEGORÍA PRINCIPAL</td>
+                        <td class="align-middle text-center">CATEGORÍA PRINCIPAL</td>
                     @else
-                        <td>{{ $categoria->category->name }}</td>
+                        <td class="align-middle text-center">{{ $categoria->category->name }}</td>
                     @endif
                     <td>
                         <button data-bs-toggle="modal" data-bs-target="#modal-{{ $categoria->id }}">
@@ -108,7 +114,6 @@
                     </td>
                 </tr>
 
-                <!-- Modal de edición de cada categoria TO_DO:implementar el método y añadir al web.route.php -->
                 <form action="{{ url('categoria/edit', ['id' => $categoria->id]) }}" method="POST"
                     enctype="multipart/form-data"> <!-- Tipo de codificación para enviar ficheros -->
                     @method('PUT')
