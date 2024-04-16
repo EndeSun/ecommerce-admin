@@ -213,9 +213,10 @@
 
                                                     <ul class="dropdown-menu w-100">
                                                         @foreach ($arrayCategoriasAll as $subcategoria)
-                                                        {{-- subcategoria->category_id es el parent_id de la subcategoria --}}
+                                                            {{-- subcategoria->category_id es el parent_id de la subcategoria --}}
                                                             @if ($subcategoria->category_id === $categoria->id)
-                                                                <li class="d-flex flex-row justify-content-between px-2 dropdown-item w-100">
+                                                                <li
+                                                                    class="d-flex flex-row justify-content-between px-2 dropdown-item w-100">
                                                                     {{ $subcategoria->name }}
                                                                     {{-- TO_DO eliminar la subcategoría parámetro para eliminar: $subcategoria->id --}}
                                                                     <a class="btn btn-danger" href="#">
@@ -240,19 +241,20 @@
                                                     <ul class="dropdown-menu w-100">
                                                         {{-- Array de productos --}}
 
-                                                        <!-- @foreach ($arrayCategoriasAll as $subcategoria)
-
-                                                            @if ($subcategoria->category_id === $categoria->id)
-                                                                <li class="d-flex flex-row justify-content-between px-2 dropdown-item w-100">
-                                                                    {{ $subcategoria->name }}
-                                                                    {{-- TO_DO eliminar la subcategoría parámetro para eliminar: $subcategoria->id --}}
-                                                                    <a class="btn btn-danger" href="#">
-                                                                        <i class="fa fa-close"></i>
-                                                                    </a>
-
-                                                                </li>
-                                                            @endif
-                                                        @endforeach -->
+                                                        @foreach ($arrayCategoriasAll as $subcategoria)
+                                                            @foreach ($subcategoria->products as $producto)
+                                                                @if ($producto->category_id === $categoria->id)
+                                                                    <li
+                                                                        class="d-flex flex-row justify-content-between px-2 dropdown-item w-100">
+                                                                        {{ $producto->name }}
+                                                                        {{-- TO_DO eliminar la subcategoría parámetro para eliminar: $subcategoria->id --}}
+                                                                        <a class="btn btn-danger" href="#">
+                                                                            <i class="fa fa-close"></i>
+                                                                        </a>
+                                                                    </li>
+                                                                @endif
+                                                            @endforeach
+                                                        @endforeach
 
                                                     </ul>
                                                 </div>

@@ -25,6 +25,7 @@ class ProductosController extends Controller
         $query->leftJoin('categories as parent', 'categories.category_id', '=', 'parent.id')
         ->select('categories.*', 'parent.name as parent_name');
 
+
         if ($sort === 'parent_name') {
             $sort = 'parent_name';
         }
@@ -48,9 +49,9 @@ class ProductosController extends Controller
 
         /* Array de todas las categorías para seleccionar el campo de select de categoría padre */
         $arrayCategoriasAll = Category::with('categories')
+        ->with('products')
         ->orderBy('name','asc')
-        ->get()
-        ;
+        ->get();
 
         return view('productos/categorias/categorias', 
         compact(
