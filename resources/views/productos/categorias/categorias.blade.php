@@ -180,7 +180,7 @@
                                             <div class="form-group col-6">
                                                 <label for="category_parent_update">Categoría padre</label>
                                                 <select class="form-select" name="category_parent_update"
-                                                    id="category_parent_update" aria-label="Default select example">
+                                                    id="category_parent_update">
                                                     @if ($categoria->category)
                                                         <option selected>{{ $categoria->category->name }}</option>
                                                         <option value="CATEGORÍA PRINCIPAL">CATEGORÍA PRINCIPAL</option>
@@ -202,14 +202,19 @@
 
                                         <div class="row">
                                             <div class="form-group col-6">
-                                                <label for="name_update">Subcategorías</label>
-                                                <input type="text" value="" name="name_update" id="name_update"
-                                                    class="form-control">
+                                                <label for="subcategorias_update">Subcategorías</label>
+                                                <select class="form-select" name="subcategorias_update" id="subcategorias_update">
+
+
+                                                </select>
                                             </div>
+                                            
                                             <div class="form-group col-6">
-                                                <label for="surname_update">Productos</label>
-                                                <input type="text" value="" name="surname_update"
-                                                    id="surname_update" class="form-control">
+                                                <label for="productos_update">Productos</label>
+                                                <select class="form-select" name="productos_update" id="productos_update">
+
+
+                                                </select>
                                             </div>
                                         </div>
 
