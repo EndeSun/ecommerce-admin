@@ -12,7 +12,7 @@ use App\Exports\CategoriasExport;
 class ProductosController extends Controller
 {
 
-    
+
     public function getCategorias(Request $request){
         $paginate = 10;
         $search = $request->filled('search') ? $request->search : '';
@@ -48,22 +48,28 @@ class ProductosController extends Controller
         return view('productos/categorias/categorias', compact('arrayCategorias', 'sort', 'order', 'search'));
     }
 
-    public function exportPDFCategorias(){
+    /* Funciones de exporta categorías en PDF y EXCEL */
+    public function exportPDFCategorias()
+    {
         $arrayCategorias = Category::all();
         $pdf = Pdf::loadView('productos.categorias.report', compact('arrayCategorias'));
         return $pdf->stream('categorias.pdf', compact('arrayCategorias'));
     }
-    public function exportExcelCategorias(){
+    public function exportExcelCategorias()
+    {
         return Excel::download(new CategoriasExport, 'Categorias.xlsx');
     }
-    
 
-    public function getProductos(){
+
+
+    public function getProductos()
+    {
         $arrayProductos = Product::all();
         return view('productos/productos', ['arrayProductos' => $arrayProductos]);
     }
-    
-    public function getProductosInformes(){
+
+    public function getProductosInformes()
+    {
         return view('productos/productos_informes');
     }
 }
