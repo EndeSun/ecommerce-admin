@@ -45,7 +45,11 @@ class ProductosController extends Controller
         }
 
         $arrayCategorias = $query->paginate($paginate);
-        return view('productos/categorias/categorias', compact('arrayCategorias', 'sort', 'order', 'search'));
+
+
+        $arrayCategoriasAll = Category::query()->orderBy('name','asc')->get();
+
+        return view('productos/categorias/categorias', compact('arrayCategorias','arrayCategoriasAll', 'sort', 'order', 'search'));
     }
 
     /* Funciones de exporta categorías en PDF y EXCEL */

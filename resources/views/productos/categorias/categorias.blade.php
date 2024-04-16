@@ -143,9 +143,10 @@
                                                 width="80rem" class="img-fluid">
                                         </figure>
                                         <div class=" mb-3 col-8 col-md-10 col-lg-11 form-group">
-                                            <label for="image_category_put" class="form-label">Cambiar foto de la categoría</label>
-                                            <input class="form-control" type="file" name="image" id="image_category_put" 
-                                            accept="image/png, image/jpeg, image/jpg">
+                                            <label for="image_category_put" class="form-label">Cambiar foto de la
+                                                categoría</label>
+                                            <input class="form-control" type="file" name="image"
+                                                id="image_category_put" accept="image/png, image/jpeg, image/jpg">
                                             <!-- Especificación del tipo de codificación -->
                                             @error('image')
                                                 <small class="text-danger">{{ $message }}</small>
@@ -176,21 +177,23 @@
                                                     id="name_update" class="form-control">
                                             </div>
 
-                                            {{-- TO_DO Este campo quiero que sea una lista desplegable en la que puedo seleccionar fácilmente la categoría padre de esta categoría --}}
                                             <div class="form-group col-6">
                                                 <label for="category_parent_update">Categoría padre</label>
                                                 <select class="form-select" name="category_parent_update"
                                                     id="category_parent_update" aria-label="Default select example">
-                                                    @if ($categoria->parentCategory)
-                                                        <option selected>{{  $categoria->category->name }}</option>
+                                                    @if ($categoria->category)
+                                                        <option selected>{{ $categoria->category->name }}</option>
                                                         <option value="CATEGORÍA PRINCIPAL">CATEGORÍA PRINCIPAL</option>
-                                                        @foreach ($arrayCategorias as $categoria)
-                                                            <option value="">{{ $categoria->name }}</option>
+                                                        @foreach ($arrayCategoriasAll as $categoriaAll)
+                                                            @if ($categoriaAll->id !== $categoria->category->id)
+                                                                <option value="{{$categoriaAll->id}}">{{ $categoriaAll->name }}</option>
+                                                            @endif
                                                         @endforeach
                                                     @else
                                                         <option selected>CATEGORÍA PRINCIPAL</option>
-                                                        <option value="">One</option>
-                                                        <option value=""></option>
+                                                        @foreach ($arrayCategoriasAll as $categoriaAll)
+                                                            <option value="{{ $categoriaAll->id }}">{{ $categoriaAll->name }}</option>
+                                                        @endforeach
                                                     @endif
                                                 </select>
                                             </div>
@@ -228,7 +231,8 @@
 
                                 {{-- Action buttons --}}
                                 <div class="modal-footer">
-                                    <button type="button"class="btn btn-secondary btn-cancel" data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="button"class="btn btn-secondary btn-cancel"
+                                        data-bs-dismiss="modal">Cancelar</button>
                                     <button type="submit" class="btn btn-success">Actualizar</button>
                                 </div>
                             </div>
