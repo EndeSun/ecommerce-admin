@@ -213,8 +213,6 @@ table {
             transition: background-color 0.5s;
         }
     }
-
-    
 }
 
 /* Barra de paginación*/
@@ -239,5 +237,18 @@ nav.flex.justify-between.items-center {
 form {
     input {
         border-radius: $border-radius;
+    }
+}
+
+//Dropwdown menu within the modal
+.modal-content {
+    .dropdown-menu {
+        background: #252424;
+        li {
+            color: #f6f2f2 !important;
+        }
+        li:hover{
+            color: #252424 !important;
+        }
     }
 }

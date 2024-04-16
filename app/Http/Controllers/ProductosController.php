@@ -46,21 +46,29 @@ class ProductosController extends Controller
 
         $arrayCategorias = $query->paginate($paginate);
 
+        /* Array de todas las categorías para seleccionar el campo de select de categoría padre */
+        $arrayCategoriasAll = Category::with('categories')
+        ->orderBy('name','asc')
+        ->get()
+        ;
 
-        $arrayCategoriasAll = Category::query()->orderBy('name','asc')->get();
-
-        return view('productos/categorias/categorias', compact('arrayCategorias','arrayCategoriasAll', 'sort', 'order', 'search'));
+        return view('productos/categorias/categorias', 
+        compact(
+            'arrayCategorias',
+            'arrayCategoriasAll', 
+            'sort', 
+            'order', 
+            'search'
+        ));
     }
 
     /* Funciones de exporta categorías en PDF y EXCEL */
-    public function exportPDFCategorias()
-    {
+    public function exportPDFCategorias(){
         $arrayCategorias = Category::all();
         $pdf = Pdf::loadView('productos.categorias.report', compact('arrayCategorias'));
         return $pdf->stream('categorias.pdf', compact('arrayCategorias'));
     }
-    public function exportExcelCategorias()
-    {
+    public function exportExcelCategorias(){
         return Excel::download(new CategoriasExport, 'Categorias.xlsx');
     }
 

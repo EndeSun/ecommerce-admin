@@ -111,8 +111,7 @@
                     @endif
                     <td>
                         <button data-bs-toggle="modal" data-bs-target="#modal-{{ $categoria->id }}">
-                            <i class="fa-solid fa-pencil">
-                            </i>
+                            <i class="fa-solid fa-pencil"></i>
                         </button>
                     </td>
                 </tr>
@@ -169,7 +168,6 @@
                                             </div>
                                         </div>
 
-                                        {{-- Next fields --}}
                                         <div class="row">
                                             <div class="form-group col-6">
                                                 <label for="name_update">Nombre</label>
@@ -186,13 +184,15 @@
                                                         <option value="CATEGORÍA PRINCIPAL">CATEGORÍA PRINCIPAL</option>
                                                         @foreach ($arrayCategoriasAll as $categoriaAll)
                                                             @if ($categoriaAll->id !== $categoria->category->id)
-                                                                <option value="{{$categoriaAll->id}}">{{ $categoriaAll->name }}</option>
+                                                                <option value="{{ $categoriaAll->id }}">
+                                                                    {{ $categoriaAll->name }}</option>
                                                             @endif
                                                         @endforeach
                                                     @else
                                                         <option selected>CATEGORÍA PRINCIPAL</option>
                                                         @foreach ($arrayCategoriasAll as $categoriaAll)
-                                                            <option value="{{ $categoriaAll->id }}">{{ $categoriaAll->name }}</option>
+                                                            <option value="{{ $categoriaAll->id }}">
+                                                                {{ $categoriaAll->name }}</option>
                                                         @endforeach
                                                     @endif
                                                 </select>
@@ -200,34 +200,79 @@
 
                                         </div>
 
+                                        {{-- Vista de subcategorías y productos contenida en ella --}}
                                         <div class="row">
                                             <div class="form-group col-6">
-                                                <label for="subcategorias_update">Subcategorías</label>
-                                                <select class="form-select" name="subcategorias_update" id="subcategorias_update">
+                                                <p class="mb-0">Subcategorías</p>
+                                                {{-- Obtener todas las subcategorias de la categoría --}}
+                                                <div class="dropdown w-100">
+                                                    <button class="btn btn-outline-secondary dropdown-toggle w-100"
+                                                        type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        Ver <strong>subcategorías</strong>
+                                                    </button>
 
+                                                    <ul class="dropdown-menu w-100">
+                                                        @foreach ($arrayCategoriasAll as $subcategoria)
+                                                        {{-- subcategoria->category_id es el parent_id de la subcategoria --}}
+                                                            @if ($subcategoria->category_id === $categoria->id)
+                                                                <li class="d-flex flex-row justify-content-between px-2 dropdown-item w-100">
+                                                                    {{ $subcategoria->name }}
+                                                                    {{-- TO_DO eliminar la subcategoría parámetro para eliminar: $subcategoria->id --}}
+                                                                    <a class="btn btn-danger" href="#">
+                                                                        <i class="fa fa-close"></i>
+                                                                    </a>
 
-                                                </select>
+                                                                </li>
+                                                            @endif
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
                                             </div>
-                                            
+
                                             <div class="form-group col-6">
-                                                <label for="productos_update">Productos</label>
-                                                <select class="form-select" name="productos_update" id="productos_update">
+                                                <p class="mb-0">Productos</p>
+                                                <div class="dropdown w-100">
+                                                    <button class="btn btn-outline-secondary dropdown-toggle w-100"
+                                                        type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        Ver <strong>productos</strong>
+                                                    </button>
 
+                                                    <ul class="dropdown-menu w-100">
+                                                        {{-- Array de productos --}}
 
-                                                </select>
+                                                        <!-- @foreach ($arrayCategoriasAll as $subcategoria)
+
+                                                            @if ($subcategoria->category_id === $categoria->id)
+                                                                <li class="d-flex flex-row justify-content-between px-2 dropdown-item w-100">
+                                                                    {{ $subcategoria->name }}
+                                                                    {{-- TO_DO eliminar la subcategoría parámetro para eliminar: $subcategoria->id --}}
+                                                                    <a class="btn btn-danger" href="#">
+                                                                        <i class="fa fa-close"></i>
+                                                                    </a>
+
+                                                                </li>
+                                                            @endif
+                                                        @endforeach -->
+
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
 
+                                        {{-- Añadir subcategorías y productos --}}
                                         <div class="row">
                                             <div class="form-group col-6">
-                                                <label for="name_update">Añadir subcategorías</label>
-                                                <input type="text" value="" name="name_update" id="name_update"
-                                                    class="form-control">
+                                                <label for="subcategory_add_1">Añadir subcategorías</label>
+                                                <select class="form-select" name="subcategory_add_1"
+                                                    id="subcategory_add_1">
+
+                                                </select>
                                             </div>
                                             <div class="form-group col-6">
-                                                <label for="surname_update">Añadir productos</label>
-                                                <input type="text" value="" name="surname_update"
-                                                    id="surname_update" class="form-control">
+                                                <label for="products_add_1">Añadir productos</label>
+                                                <select class="form-select" name="products_add_1" id="products_add_1">
+
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
