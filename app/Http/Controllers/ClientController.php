@@ -94,7 +94,7 @@ class ClientController extends Controller
         // Si se proporciona una nueva imagen, procesarla
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-            $destinationPath = 'images/avatarsUser/';
+            $destinationPath = 'images/categoryImage/';
             $filename = time() . '-' . $file->getClientOriginalName();
 
             // Redimensionar y guardar la imagen
