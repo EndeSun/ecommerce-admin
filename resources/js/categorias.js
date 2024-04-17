@@ -27,3 +27,22 @@ $('.modal-put').on('hide.bs.modal', function () {
     modal.find('.colorPickerText').val(oldColor);
     modal.find('.colorPicker').val(oldColor);
 });
+
+
+/* ---------- */
+/* ---------- */
+/* ---------- */
+
+//Para el modal de añadir categorías:
+const colorPickersAdd = document.getElementById('colorPickerAdd');
+const colorPickerTextsAdd = document.getElementById('colorPickerTextAdd');
+
+/* When update modal is closed */
+$('.modal-add').on('hide.bs.modal', function () {
+    colorPickerTextsAdd.value = '#effadc';
+    colorPickersAdd.value = '#effadc';
+});
+
+colorPickersAdd.addEventListener('input', function() {
+    colorPickerTextsAdd.value = colorPickersAdd.value;
+});

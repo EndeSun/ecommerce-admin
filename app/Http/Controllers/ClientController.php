@@ -4,13 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\Order;
-use App\Models\Order_product;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ClientsExport;
-use Alert;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -86,7 +82,7 @@ class ClientController extends Controller
 
         // Validar la entrada, incluida la imagen
         $validator = Validator::make($request->all(), [
-            'image' => 'image|mimes:jpeg,png,jpg|max:4096',
+            'image' => 'image|mimes:jpeg,png,jpg|max:20000',
         ]);
 
         if ($validator->fails()) {

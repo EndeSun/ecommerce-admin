@@ -12,7 +12,7 @@
     </button>
 
     {{-- Add New Catefory Form --}}
-    <div class="modal fade" id="add_category" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal modal-add fade" id="add_category" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-scrollable">
             <div class="modal-content">
                 <!-- Add new Category secction  -->
@@ -22,9 +22,65 @@
                         <h2 class="modal-title fs-5" id="exampleModalLabel">Añadir nueva categoría</h2>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+
                     <div class="modal-body">
+                        <div class="row">
+
+                            {{-- Image show --}}
+                            <figure class="col-4 col-md-2 col-lg-1">
+                                <img src = "{{ asset('defecto.webp') }}" alt="foto_categoria" width="80rem"
+                                    class="img-fluid">
+                            </figure>
+
+                            {{-- Image input field --}}
+                            <div class=" mb-3 col-8 col-md-10 col-lg-11 form-group">
+                                <label for="image_category_add" class="form-label">Añadir foto de la categoría</label>
+                                <input class="form-control" type="file" name="image" id="image_category_add"
+                                    accept="image/png, image/jpeg, image/jpg">
+                                <!-- Especificación del tipo de codificación -->
+                                @error('image')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+
+                            {{-- Color picker field --}}
+                            <div class="row my-4">
+                                <div class="form-group p-0 col-4 col-md-2 col-lg-1 text-center d-flex justify-content-center ">
+                                    <input class="form-control border-2 h-100 w-100 colorPickerAdd" type="color" id="colorPickerAdd" value="#effadc">
+                                </div>
+
+                                <div class="form-group col-8 col-md-10 col-lg-11 align-items-center">
+                                    <label for="colorPickerTextAdd">Seleccione el color de fondo</label>
+                                    <input class="form-control colorPickerTextAdd" type="text" name="colorPickerTextAdd" id="colorPickerTextAdd" readonly value="#effadc">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-6">
+                                    <label for="name_add">Nombre</label>
+                                    <input type="text" name="name_add" id="name_add" class="form-control">
+                                </div>
+
+                                <div class="form-group col-6">
+                                    <label for="category_parent_add">Categoría padre</label>
+                                    <select class="form-select" name="category_parent_add"
+                                        id="category_parent_add">
+                                        <option value="CATEGORÍA PRINCIPAL">CATEGORÍA PRINCIPAL</option>
+                                        @foreach ($arrayCategoriasAll as $categoriasAll)
+                                            <option value="{{$categoriasAll->id}}">{{$categoriasAll->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                            </div>
+                            
+
+
+                        </div>
 
                     </div>
+
+                    {{-- ACTION  BUTTONS --}}
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                         <button type="submit" class="btn btn-success">Agregar categoría</button>
@@ -55,7 +111,7 @@
             <tr>
                 <th></th>
                 <th class="text-center">
-                    <p>Color de fondo</p>
+                    <p class="mb-0">Color de fondo</p>
                 </th>
 
                 <th>
@@ -89,9 +145,16 @@
         <tbody>
             @foreach ($arrayCategorias as $categoria)
                 <tr>
-                    <td scope="row" class="align-middle text-center">
-                        <img src="{{ asset($categoria->imagen) }}" alt="categoría" width="35rem" class="img-fluid">
-                    </td>
+
+                    <th class="text-center">
+                        @if ($categoria->image)
+                            <img src="{{ asset($categoria->image) }}" alt="Imagen categoría" width="50rem"
+                                class="img-fluid">
+                        @else
+                            <img src="{{ asset('defecto.webp') }}" alt="Imagen categoría" width="60rem"
+                                class="img-fluid">
+                        @endif
+                    </th>
 
                     {{-- Color de fondo de la imagen que se presentará en la aplicación móvil --}}
                     <td class="text-center align-middle">
@@ -137,10 +200,14 @@
                                 <div class="modal-body">
 
                                     <div class="row">
+
+                                        {{-- Image show --}}
                                         <figure class="col-4 col-md-2 col-lg-1">
                                             <img src="{{ asset($categoria->imagen) }}" alt="foto_categoria"
                                                 width="80rem" class="img-fluid">
                                         </figure>
+
+                                        {{-- Image input field --}}
                                         <div class=" mb-3 col-8 col-md-10 col-lg-11 form-group">
                                             <label for="image_category_put" class="form-label">Cambiar foto de la
                                                 categoría</label>
@@ -168,6 +235,7 @@
                                             </div>
                                         </div>
 
+                                        {{-- Name and parent category field --}}
                                         <div class="row">
                                             <div class="form-group col-6">
                                                 <label for="name_update">Nombre</label>
@@ -334,7 +402,7 @@
                                                                         {{ $producto->name }}
                                                                         {{-- TO_DO añadir el producto, parámetro para eliminar: $producto->id, sería un update modificando el category_id al valor de la categoría $categoria->id --}}
                                                                         <a class="btn btn-success" href="#">
-                                                                            <i class="fa fa-plus "></i>
+                                                                            <i class="fa fa-plus"></i>
                                                                         </a>
                                                                     </li>
                                                                 @endif

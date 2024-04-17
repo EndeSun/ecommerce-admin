@@ -18,7 +18,7 @@
             <div class="modal-content">
                 {{-- ADD NEW CLIENT FORM --}}
                 <form action="{{ url('clientes/post') }}" method="POST" enctype="multipart/form-data">
-                    
+
                     @csrf
                     <div class="modal-header">
                         <h2 class="modal-title fs-5" id="exampleModalLabel">Añadir nuevo cliente</h2>
@@ -110,7 +110,7 @@
 
     <!-- Main table -->
     <table id="clientes-tabla" class="table table-striped table-borderer shadow-lg mt-4" style="width:100%">
-        
+
         <thead class="bg-info">
             <tr>
                 <th></th>
@@ -119,7 +119,8 @@
                         <p class="mb-0">Nombre</p>
                         <div class="d-flex flex-column mx-3">
                             <a href="{{ url('clientes?sort=name&order=asc') }}"><i class="fa-solid fa-caret-up"></i></a>
-                            <a href="{{ url('clientes?sort=name&order=desc') }}"><i class="fa-solid fa-caret-down"></i></a>
+                            <a href="{{ url('clientes?sort=name&order=desc') }}"><i
+                                    class="fa-solid fa-caret-down"></i></a>
                         </div>
                     </div>
                 </th>
@@ -129,7 +130,8 @@
                         <p class="mb-0">Correo</p>
                         <div class="d-flex flex-column mx-3">
                             <a href="{{ url('clientes?sort=email&order=asc') }}"><i class="fa-solid fa-caret-up"></i></a>
-                            <a href="{{ url('clientes?sort=email&order=desc') }}"><i class="fa-solid fa-caret-down"></i></a>
+                            <a href="{{ url('clientes?sort=email&order=desc') }}"><i
+                                    class="fa-solid fa-caret-down"></i></a>
                         </div>
                     </div>
                 </th>
@@ -156,17 +158,26 @@
             @foreach ($arrayUsers as $user)
                 <tr>
                     <th class="text-center">
-                        <img src="{{ asset($user->image) }}" alt="Imagen perfil" width="50rem"
-                            class="img-fluid rounded-circle">
+                        @if ($user->image)
+                            <img src="{{ asset($user->image) }}" alt="Imagen perfil" width="50rem"
+                                class="img-fluid rounded-circle">
+                        @else
+                            <img src="{{ asset('defecto.webp') }}" alt="Imagen de perfil por defecto" width="50rem"
+                                class="img-fluid rounded-circle">
+                        @endif
                     </th>
+
+
+
                     <td class="text-center">{{ $user->name }}</td>
                     <td class="text-center">{{ $user->email }}</td>
                     <td class="text-center">{{ $user->phone }}</td>
-                    <td class="text-center">{{ $user->street }} {{ $user->city }} {{ $user->state }} {{ $user->CP }}</td>
+                    <td class="text-center">{{ $user->street }} {{ $user->city }} {{ $user->state }}
+                        {{ $user->CP }}</td>
                     <td class="text-center">
                         {{ $user->orders->sum('orders_product_sum_price') }} €
                     </td>
-                    
+
                     <td class="text-center">
                         <button data-bs-toggle="modal" data-bs-target="#modal-{{ $user->id }}">
                             <i class="fa-solid fa-pencil">
@@ -222,8 +233,8 @@
                                     <div class="row">
                                         <div class="form-group col-6">
                                             <label for="name_update">Nombre</label>
-                                            <input type="text" value="{{ $user->name }}" name="name_update" 
-                                            id="name_update" class="form-control">
+                                            <input type="text" value="{{ $user->name }}" name="name_update"
+                                                id="name_update" class="form-control">
                                         </div>
                                         <div class="form-group col-6">
                                             <label for="surname_update">Apellidos</label>
@@ -231,7 +242,7 @@
                                                 id="surname_update" class="form-control">
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label for="emailPost_update">Correo</label>
                                         <input type="email" value="{{ $user->email }}" name="emailPost_update"
@@ -270,7 +281,8 @@
 
                                 {{-- Botones del formulario de edición --}}
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="button"
+                                        class="btn btn-secondary"data-bs-dismiss="modal">Cancelar</button>
                                     <button type="submit" class="btn btn-success">Actualizar</button>
                                 </div>
 

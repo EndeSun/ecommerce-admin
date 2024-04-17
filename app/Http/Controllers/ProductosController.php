@@ -8,6 +8,9 @@ use App\Models\Product;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\CategoriasExport;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Validator;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class ProductosController extends Controller
 {
