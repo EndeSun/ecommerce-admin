@@ -42,6 +42,8 @@ Route::any("/categorias", [ProductosController::class, 'getCategorias'])->name('
 Route::any("/categorias/reportPDF", [ProductosController::class, 'exportPDFCategorias'])->name('productos.categorias.report'); //📍
 Route::any("/categorias/reportExcel", [ProductosController::class, 'exportExcelCategorias'])->name('categorias.excel'); //📍
 
+Route::post('/category/post', [ProductosController::class, 'postCategory']);
+
 
 Route::get("/productos", [ProductosController::class, 'getProductos']); //✅
 Route::get("/productos/informes", [ProductosController::class, 'getProductosInformes']);

@@ -35,23 +35,27 @@
                             {{-- Image input field --}}
                             <div class=" mb-3 col-8 col-md-10 col-lg-11 form-group">
                                 <label for="image_category_add" class="form-label">Añadir foto de la categoría</label>
-                                <input class="form-control" type="file" name="image" id="image_category_add"
+                                <input class="form-control" type="file" name="image_category_add" id="image_category_add"
                                     accept="image/png, image/jpeg, image/jpg">
                                 <!-- Especificación del tipo de codificación -->
                                 @error('image')
+                                    @include('alert::alert')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
 
                             {{-- Color picker field --}}
                             <div class="row my-4">
-                                <div class="form-group p-0 col-4 col-md-2 col-lg-1 text-center d-flex justify-content-center ">
-                                    <input class="form-control border-2 h-100 w-100 colorPickerAdd" type="color" id="colorPickerAdd" value="#effadc">
+                                <div
+                                    class="form-group p-0 col-4 col-md-2 col-lg-1 text-center d-flex justify-content-center ">
+                                    <input class="form-control border-2 h-100 w-100 colorPickerAdd" type="color"
+                                        id="colorPickerAdd" name="colorPickerAdd" value="#effadc">
                                 </div>
 
                                 <div class="form-group col-8 col-md-10 col-lg-11 align-items-center">
                                     <label for="colorPickerTextAdd">Seleccione el color de fondo</label>
-                                    <input class="form-control colorPickerTextAdd" type="text" name="colorPickerTextAdd" id="colorPickerTextAdd" readonly value="#effadc">
+                                    <input class="form-control colorPickerTextAdd" type="text" name="colorPickerTextAdd"
+                                        id="colorPickerTextAdd" readonly value="#effadc">
                                 </div>
                             </div>
 
@@ -63,17 +67,16 @@
 
                                 <div class="form-group col-6">
                                     <label for="category_parent_add">Categoría padre</label>
-                                    <select class="form-select" name="category_parent_add"
-                                        id="category_parent_add">
+                                    <select class="form-select" name="category_parent_add" id="category_parent_add">
                                         <option value="CATEGORÍA PRINCIPAL">CATEGORÍA PRINCIPAL</option>
                                         @foreach ($arrayCategoriasAll as $categoriasAll)
-                                            <option value="{{$categoriasAll->id}}">{{$categoriasAll->name}}</option>
+                                            <option value="{{ $categoriasAll->id }}">{{ $categoriasAll->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
 
                             </div>
-                            
+
 
 
                         </div>
@@ -147,8 +150,8 @@
                 <tr>
 
                     <th class="text-center">
-                        @if ($categoria->image)
-                            <img src="{{ asset($categoria->image) }}" alt="Imagen categoría" width="50rem"
+                        @if ($categoria->imagen)
+                            <img src="{{ asset($categoria->imagen) }}" alt="Imagen categoría" width="50rem"
                                 class="img-fluid">
                         @else
                             <img src="{{ asset('defecto.webp') }}" alt="Imagen categoría" width="60rem"
