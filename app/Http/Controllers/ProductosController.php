@@ -89,11 +89,11 @@ class ProductosController extends Controller
 
         /* Subida de imagen */
         $validator = Validator::make($request->all(), [
-            'image' => 'image|mimes:jpeg,png,jpg|max:20000',
+            'image_category_add' => 'image|mimes:jpeg,png,jpg|max:20000',
         ]);
 
         if ($validator->fails()) {
-            return redirect('/clientes')
+            return redirect('/categorias')
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -120,9 +120,49 @@ class ProductosController extends Controller
         return redirect('/categorias');
     }
 
-    public function putCategory(Request $request)
+    public function putCategory(Request $request, $id)
     {
-        
+        $category = Category::findOrFail($id);
+
+        $validator = Validator::make($request->all(), [
+            'image_category_update' => 'image|mimes:jpeg,png,jpg|max:20000',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/categorias')
+            ->withErrors($validator)
+            ->withInput();
+        }
+
+        // Si se proporciona una nueva imagen, procesarla
+        if ($request->hasFile('image_category_update')) {
+            $file = $request->file('image_category_update');
+            $destinationPath = 'images/categoryImage/';
+            $filename = time() . '-' . $file->getClientOriginalName();
+            // Redimensionar y guardar la imagen
+            $resizedImage = Image::make($file)->fit(512, 512);
+            $resizedImagePath = $destinationPath . $filename;
+            $resizedImage->save($resizedImagePath);
+
+            // Eliminar la imagen anterior si existe
+            if ($category->imagen) {
+                File::delete($category->imagen);
+            }
+            // Actualizar el atributo de imagen del usuario con la nueva ruta
+            $category->imagen = $resizedImagePath;
+        }
+
+        $category->fondo = $request->input('colorPicker');
+        $category->name = $request->input('name_update');
+
+        if($request->input('category_parent_update') === "CATEGORÍA PRINCIPAL"){
+            $category->category_id = null;
+        }else{
+            $category->category_id = $request->input('category_parent_update');
+        }
+
+        $category->save();
+        return redirect('/categorias');
     }
 
 

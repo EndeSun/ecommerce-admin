@@ -151,7 +151,7 @@
 
                     <th class="text-center">
                         @if ($categoria->imagen)
-                            <img src="{{ asset($categoria->imagen) }}" alt="Imagen categoría" width="50rem"
+                            <img src="{{ asset($categoria->imagen) }}" alt="Imagen categoría" width="60rem"
                                 class="img-fluid">
                         @else
                             <img src="{{ asset('defecto.webp') }}" alt="Imagen categoría" width="60rem"
@@ -183,7 +183,7 @@
                 </tr>
 
                 {{-- Edit form for each category --}}
-                <form action="{{ url('categoria/edit', ['id' => $categoria->id]) }}" method="POST"
+                <form action="{{ url('category/edit', ['id' => $categoria->id]) }}" method="POST"
                     enctype="multipart/form-data"> <!-- Tipo de codificación para enviar ficheros -->
                     @method('PUT')
                     @csrf
@@ -206,18 +206,28 @@
 
                                         {{-- Image show --}}
                                         <figure class="col-4 col-md-2 col-lg-1">
-                                            <img src="{{ asset($categoria->imagen) }}" alt="foto_categoria"
-                                                width="80rem" class="img-fluid">
+
+                                            @if ($categoria->imagen)
+                                                <img src="{{ asset($categoria->imagen) }}" alt="foto_categoria"
+                                                    width="80rem" class="img-fluid">
+                                            @else
+                                                <img src="{{ asset('defecto.webp') }}" alt="foto por defecto"
+                                                    width="80rem" class="img-fluid">
+                                            @endif
+
+
+
                                         </figure>
 
                                         {{-- Image input field --}}
                                         <div class=" mb-3 col-8 col-md-10 col-lg-11 form-group">
-                                            <label for="image_category_put" class="form-label">Cambiar foto de la
+                                            <label for="image_category_update" class="form-label">Cambiar foto de la
                                                 categoría</label>
-                                            <input class="form-control" type="file" name="image"
-                                                id="image_category_put" accept="image/png, image/jpeg, image/jpg">
+                                            <input class="form-control" type="file" name="image_category_update"
+                                                id="image_category_update" accept="image/png, image/jpeg, image/jpg">
                                             <!-- Especificación del tipo de codificación -->
                                             @error('image')
+                                                @include('alert::alert')
                                                 <small class="text-danger">{{ $message }}</small>
                                             @enderror
                                         </div>
@@ -226,15 +236,34 @@
                                         <div class="row my-4">
                                             <div
                                                 class="form-group p-0 col-4 col-md-2 col-lg-1 text-center d-flex justify-content-center ">
-                                                <input class="form-control border-2 h-100 w-100 colorPicker"
-                                                    type="color" value="{{ $categoria->fondo }}" id="colorPicker">
+
+                                                @if ($categoria->fondo)
+                                                    <input class="form-control border-2 h-100 w-100 colorPicker"
+                                                        name="colorPicker" type="color"
+                                                        value="{{ $categoria->fondo }}" id="colorPicker">
+                                                @else
+                                                    <input class="form-control border-2 h-100 w-100 colorPicker"
+                                                        name="colorPicker" type="color" value="#effadc"
+                                                        id="colorPicker">
+                                                @endif
+
+
                                             </div>
 
                                             <div class="form-group col-8 col-md-10 col-lg-11 align-items-center">
                                                 <label for="colorPickerText">Seleccione el color de fondo</label>
-                                                <input class="form-control colorPickerText" type="text"
-                                                    value="{{ $categoria->fondo }}" name="colorPickerText"
-                                                    id="colorPickerText" readonly>
+
+                                                @if ($categoria->fondo)
+                                                    <input class="form-control colorPickerText" type="text"
+                                                        value="{{ $categoria->fondo }}" name="colorPickerText"
+                                                        id="colorPickerText" readonly>
+                                                @else
+                                                    <input class="form-control colorPickerText" type="text"
+                                                        value="#effadc" name="colorPickerText" id="colorPickerText"
+                                                        readonly>
+                                                @endif
+
+
                                             </div>
                                         </div>
 
@@ -251,7 +280,8 @@
                                                 <select class="form-select" name="category_parent_update"
                                                     id="category_parent_update">
                                                     @if ($categoria->category)
-                                                        <option selected>{{ $categoria->category->name }}</option>
+                                                        <option selected value="{{ $categoria->category->id }}">
+                                                            {{ $categoria->category->name }}</option>
                                                         <option value="CATEGORÍA PRINCIPAL">CATEGORÍA PRINCIPAL</option>
                                                         @foreach ($arrayCategoriasAll as $categoriaAll)
                                                             @if ($categoriaAll->id !== $categoria->category->id)
@@ -415,8 +445,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
-
                                     </div>
 
                                     {{-- Action buttons --}}

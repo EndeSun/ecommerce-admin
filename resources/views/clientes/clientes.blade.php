@@ -159,16 +159,13 @@
                 <tr>
                     <th class="text-center">
                         @if ($user->image)
-                            <img src="{{ asset($user->image) }}" alt="Imagen perfil" width="50rem"
+                            <img src="{{ asset($user->image) }}" alt="Imagen perfil" width="60rem"
                                 class="img-fluid rounded-circle">
                         @else
-                            <img src="{{ asset('defecto.webp') }}" alt="Imagen de perfil por defecto" width="50rem"
+                            <img src="{{ asset('defecto.webp') }}" alt="Imagen de perfil por defecto" width="60rem"
                                 class="img-fluid rounded-circle">
                         @endif
                     </th>
-
-
-
                     <td class="text-center">{{ $user->name }}</td>
                     <td class="text-center">{{ $user->email }}</td>
                     <td class="text-center">{{ $user->phone }}</td>

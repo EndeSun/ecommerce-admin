@@ -37,11 +37,12 @@ Route::put('/clientes/edit/{id}', [ClientController::class, 'putEditClient']);
 Route::post('/clientes/post', [ClientController::class, 'postClient']);
 
 
-/* Módulo de productos */
+/* Módulo de productos - categorias*/
 Route::any("/categorias", [ProductosController::class, 'getCategorias'])->name('arrayCategorias'); //📍
 Route::any("/categorias/reportPDF", [ProductosController::class, 'exportPDFCategorias'])->name('productos.categorias.report'); //📍
 Route::any("/categorias/reportExcel", [ProductosController::class, 'exportExcelCategorias'])->name('categorias.excel'); //📍
 
+Route::put('/category/edit/{id}', [ProductosController::class, 'putCategory']);
 Route::post('/category/post', [ProductosController::class, 'postCategory']);
 
 
