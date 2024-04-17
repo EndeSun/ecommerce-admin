@@ -247,7 +247,7 @@
                                                                     <li
                                                                         class="d-flex flex-row justify-content-between px-2 dropdown-item w-100">
                                                                         {{ $producto->name }}
-                                                                        {{-- TO_DO eliminar la subcategoría parámetro para eliminar: $subcategoria->id --}}
+                                                                        {{-- TO_DO eliminar el producto, parámetro para eliminar: $producto->id, sería un update modificando el category_id a null --}}
                                                                         <a class="btn btn-danger" href="#">
                                                                             <i class="fa fa-close"></i>
                                                                         </a>
@@ -264,32 +264,99 @@
                                         {{-- Añadir subcategorías y productos --}}
                                         <div class="row">
                                             <div class="form-group col-6">
-                                                <label for="subcategory_add_1">Añadir subcategorías</label>
-                                                <select class="form-select" name="subcategory_add_1"
-                                                    id="subcategory_add_1">
+                                                <p class="mb-0">Añadir subcategorías</p>
 
-                                                </select>
+                                                <div class="dropdown w-100">
+                                                    <button class="btn btn-outline-secondary dropdown-toggle w-100"
+                                                        type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        Añadir <strong>subcategorías</strong>
+                                                    </button>
+
+                                                    {{-- TO_DO Funcionamiento del botón: pasar por parámetro a la url para añadir: $categoryAll->id --}}
+
+                                                    <ul class="dropdown-menu w-100">
+                                                        {{-- When the category has a parent category --}}
+                                                        {{-- No puede haber opción en añadir subcategorías:
+                                                            * la propia categoría
+                                                            * la categoría padre    
+                                                        --}}
+                                                        @if ($categoria->category)
+                                                            @foreach ($arrayCategoriasAll as $categoriaAll)
+                                                                @if ($categoriaAll->id !== $categoria->category->id && $categoriaAll->id !== $categoria->id)
+                                                                    <li class="d-flex flex-row justify-content-between px-2 dropdown-item w-100"
+                                                                        value="{{ $categoriaAll->id }}">
+                                                                        {{ $categoriaAll->name }}
+                                                                        <a class="btn btn-success" href="#">
+                                                                            <i class="fa fa-plus"></i>
+                                                                        </a>
+                                                                    </li>
+                                                                @endif
+                                                            @endforeach
+
+                                                            {{-- We don't have any parent category --}}
+                                                            {{--  No puede haber en las opciones:
+                                                            * La propia categoría    
+                                                        --}}
+                                                        @else
+                                                            @foreach ($arrayCategoriasAll as $categoriaAll)
+                                                                @if ($categoriaAll->id !== $categoria->id)
+                                                                    <li class="d-flex flex-row justify-content-between px-2 dropdown-item w-100"
+                                                                        value="{{ $categoriaAll->id }}">
+                                                                        {{ $categoriaAll->name }}
+                                                                        <a class="btn btn-success" href="#">
+                                                                            <i class="fa fa-plus"></i>
+                                                                        </a>
+                                                                    </li>
+                                                                @endif
+                                                            @endforeach
+                                                        @endif
+                                                    </ul>
+                                                </div>
                                             </div>
-                                            <div class="form-group col-6">
-                                                <label for="products_add_1">Añadir productos</label>
-                                                <select class="form-select" name="products_add_1" id="products_add_1">
 
-                                                </select>
+                                            {{-- Añadir productos --}}
+
+                                            <div class="form-group col-6">
+                                                <p class="mb-0">Añadir Productos</p>
+
+                                                <div class="dropdown w-100">
+                                                    <button class="btn btn-outline-secondary dropdown-toggle w-100"
+                                                        type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        Añadir <strong>productos</strong>
+                                                    </button>
+
+                                                    <ul class="dropdown-menu w-100">
+                                                        @foreach ($arrayCategoriasAll as $subcategoria)
+                                                            @foreach ($subcategoria->products as $producto)
+                                                                @if ($producto->category_id !== $categoria->id)
+                                                                    <li
+                                                                        class="d-flex flex-row justify-content-between px-2 dropdown-item w-100">
+                                                                        {{ $producto->name }}
+                                                                        {{-- TO_DO añadir el producto, parámetro para eliminar: $producto->id, sería un update modificando el category_id al valor de la categoría $categoria->id --}}
+                                                                        <a class="btn btn-success" href="#">
+                                                                            <i class="fa fa-plus "></i>
+                                                                        </a>
+                                                                    </li>
+                                                                @endif
+                                                            @endforeach
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
+
+
                                     </div>
 
-                                </div>
-
-                                {{-- Action buttons --}}
-                                <div class="modal-footer">
-                                    <button type="button"class="btn btn-secondary btn-cancel"
-                                        data-bs-dismiss="modal">Cancelar</button>
-                                    <button type="submit" class="btn btn-success">Actualizar</button>
+                                    {{-- Action buttons --}}
+                                    <div class="modal-footer">
+                                        <button type="button"class="btn btn-secondary btn-cancel"
+                                            data-bs-dismiss="modal">Cancelar</button>
+                                        <button type="submit" class="btn btn-success">Actualizar</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </form>
             @endforeach
         </tbody>
