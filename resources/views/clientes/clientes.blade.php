@@ -206,8 +206,15 @@
                                     {{-- Image form --}}
                                     <div class="row">
                                         <figure class="col-4 col-md-2 col-lg-1">
+                                            @if ($user->image)
+
                                             <img src="{{ asset($user->image) }}" alt="foto_perfil_cliente"
+                                            width="80rem" class="img-fluid">
+                                            @else
+                                            <img src="{{ asset('defecto.webp') }}" alt="foto_perfil_cliente"
                                                 width="80rem" class="img-fluid">
+                                            @endif
+                                            
                                         </figure>
 
                                         {{-- <figure class="col-4 col-md-2 col-lg-1">
